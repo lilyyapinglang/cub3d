@@ -1,6 +1,6 @@
 #include "../../includes/cub3d.h"
 
-void	graceful_exit(t_cub *cub, int code)
+void	graceful_exit(t_game *game, int code)
 {
 	if (cub->win && cub->mlx)
 		mlx_destroy_window(cub->mlx, cub->win);
@@ -13,7 +13,7 @@ void	graceful_exit(t_cub *cub, int code)
 	exit(code);
 }
 
-int	handle_exit(t_cub *cub)
+int	handle_exit(t_game *game)
 {
 	graceful_exit(cub, 0);
 	return (0);

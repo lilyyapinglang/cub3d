@@ -15,7 +15,7 @@ void	free_2d(void **arr)
 	free(arr);
 }
 
-int	free_all(t_cub *cub)
+int	free_all(t_game *game)
 {
 	if (cub->map)
 		free_2d((void **)cub->map);

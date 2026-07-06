@@ -1,6 +1,6 @@
 #include "../../includes/cub3d.h"
 
-void	init_mlx(t_cub *cub)
+void	init_mlx(t_game *game)
 {
 	cub->mlx = mlx_init();
 	if (!cub->mlx)

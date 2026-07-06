@@ -17,7 +17,7 @@ int is_valid_file(char *arg, bool cub)
     return(err_msg(arg, ERR_FILE_FORMAT, 1));
 }
 
-size_t max_line_width(t_cub *cub, int start)
+size_t max_line_width(t_game *game, int start)
 {
     if(!cub)
         return(0);
