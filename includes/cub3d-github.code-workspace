@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "cub3d-github",
+			"path": ".."
+		},
+		{
+			"name": "minilibx-linux",
+			"path": "../../../Downloads/minilibx-linux"
+		}
+	],
+	"settings": {}
+}
