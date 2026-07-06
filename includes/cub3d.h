@@ -57,7 +57,7 @@ typedef struct s_map
 typedef struct s_player
 {
 	double		player_pos_x;
-	double		player_pox_y;
+	double		player_pos_y;
 
 	double		viewing_direction_x;
 	double		viewing_direction_y;
