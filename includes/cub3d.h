@@ -15,6 +15,8 @@
 # define WIN_H 540
 # define TEX_SIZE 64
 
+# define MOVE_SPEED 0.25
+
 # define ERR_USAGE "Required input: ./cub3D map.cub"
 # define ERR_MALLOC "Memory allocation failed"
 # define ERR_FILE_OPEN "No such file or directory"
@@ -56,6 +58,15 @@ typedef struct s_texture
 	char		*path;
 }				t_texture;
 
+typedef struct s_img
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_img;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -81,5 +92,9 @@ int				parse_file(t_game *game, char **argv);
 int				parse_colors(t_game *game, char *line);
 int				parse_textures(t_game *game, char *line);
 char			*get_next_line(int fd);
+
+// rendering
+
+void			put_pixel(t_img *img, int x, int y, int color);
 
 #endif

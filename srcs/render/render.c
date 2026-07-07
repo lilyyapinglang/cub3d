@@ -1,5 +1,48 @@
 #include "../../includes/cub3d.h"
 
+/*
+ every frame
+
+ clear image
+ cast rays
+ draw walls with put_pixels()
+ draw floor/ceiling
+ mlx_put_image_to_window()
+
+*/
+
+/* for every screen column
+	x from 0 - width
+	cast ray -> hit wall - > calculate distance -> draw vertica lines
+
+
+*/
+
+void	raycsting(t_game *game, int x)
+{
+}
+
+void	render(t_game *game)
+{
+	int	x;
+
+	x = 0;
+	while (x < WIN_W)
+	{
+		raycasting(game, x);
+	}
+}
+
+/*draw walls ?? */
+
+void	draw_walls(void)
+{
+	for (y = wall_start_y, y < wall_end_y; y++)
+	{
+		put_pixel(...);
+	}
+}
+
 int	render_next_frame(void *param)
 {
 	t_game	*game;

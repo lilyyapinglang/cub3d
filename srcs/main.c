@@ -51,9 +51,31 @@ int	fake_game_init(t_game *game)
 	return (0);
 }
 
+void	put_pixel(t_img *img, int x, int y, int color)
+{
+	char	*pixel;
+
+	if (x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
+	{
+		pixel = img->addr + (y * img->line_length + x * (img->bits_per_pixel
+					/ 8));
+		*(unsigned int *)pixel = color;
+	}
+}
+
+// void	game_loop(void)
+// {
+// 	handle_input(game);
+// 	update_player(game);
+// 	clear_iamge(game);
+// 	render(game);
+// 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+// }
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
+	t_img	img;
 
 	// if (argc != 2)
 	// 	return (err_msg("", ERR_USAGE, 1));
@@ -63,8 +85,15 @@ int	main(int argc, char **argv)
 	// if (parse_file(&game, argv))
 	// 	return (1);
 	fake_game_init(&game);
+	img.img = mlx_new_image(game.mlx, WIN_W, WIN_H);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+			&img.endian);
+	// try to draw a pixel in the center of the window
+	put_pixel(&img, WIN_W / 2, WIN_H / 2, 0xFF0000);
+	mlx_put_image_to_window(game.mlx, game.win, img.img, 0, 0);
+	// mlx_loop(game.mlx);
 	// init_mlx(&game);
 	set_hooks(&game);
-	mlx_loop(game.mlx);
+	// mlx_loop_hook(game.mlx, game_loop, game);
 	return (0);
 }
