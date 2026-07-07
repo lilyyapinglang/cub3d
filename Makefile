@@ -1,7 +1,7 @@
 NAME        = cub3d
 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g3 -Iincludes -Ilibft -Iminilibx-linux
+CFLAGS = -Wall -Wextra -Werror -g3 -std=gnu17 -Iincludes -Ilibft -Iminilibx-linux
 LDFLAGS     = -lXext -lX11 -lm
 
 LIBFT_DIR   = libft
