@@ -28,33 +28,33 @@
 
 typedef struct s_file
 {
-	int		fd;
-	char	**file_content;
-	int		line_count;
-	int		end_map;
-}	t_file;
+	int			fd;
+	char		**file_content;
+	int			line_count;
+	int			end_map;
+}				t_file;
 
 typedef struct s_map
 {
-	char	**grid;
-	int		width;
-	int		height;
-}	t_map;
+	char		**grid;
+	int			width;
+	int			height;
+}				t_map;
 
 typedef struct s_player
 {
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-}	t_player;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+}				t_player;
 
 typedef struct s_texture
 {
-	char	*path;
-}	t_texture;
+	char		*path;
+}				t_texture;
 
 typedef struct s_game
 {
@@ -66,20 +66,20 @@ typedef struct s_game
 	int			floor;
 	int			ceiling;
 	t_file		file;
-}	t_game;
+}				t_game;
 
-void	init_all(t_game *game);
-void	init_mlx(t_game *game);
-void	graceful_exit(t_game *game, int code);
-int		handle_exit(t_game *game);
-int		free_all(t_game *game);
-void	free_2d(void **arr);
-int		err_msg(char *detail, char *msg, int code);
-int		is_valid_file(char *arg, bool cub);
-size_t	max_line_width(t_game *game, int start);
-int		parse_file(t_game *game, char **argv);
-int		parse_colors(t_game *game, char *line);
-int		parse_textures(t_game *game, char *line);
-char	*get_next_line(int fd);
+void			init_all(t_game *game);
+void			init_mlx(t_game *game);
+void			graceful_exit(t_game *game, int code);
+int				handle_exit(t_game *game);
+int				free_all(t_game *game);
+void			free_2d(void **arr);
+int				err_msg(char *detail, char *msg, int code);
+int				is_valid_file(char *arg, bool cub);
+size_t			max_line_width(t_game *game, int start);
+int				parse_file(t_game *game, char **argv);
+int				parse_colors(t_game *game, char *line);
+int				parse_textures(t_game *game, char *line);
+char			*get_next_line(int fd);
 
 #endif
