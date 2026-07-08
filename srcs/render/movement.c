@@ -5,12 +5,13 @@
 
 void	move_forward(t_game *game)
 {
+	// in loop, stop until detected release event,
 	game->player.pos_x += game->player.dir_x * MOVE_SPEED;
 	game->player.pos_y += game->player.dir_y * MOVE_SPEED;
 }
 // on S , move backaards.
 
-void	move_backfward(t_game *game)
+void	move_backward(t_game *game)
 {
 	game->player.pos_x -= game->player.dir_x * MOVE_SPEED;
 	game->player.pos_y -= game->player.dir_y * MOVE_SPEED;
@@ -26,15 +27,21 @@ void	move_left(t_game *game)
 
 // on D, move right (perpendicular to the facing direction)
 
-void	move_left(t_game *game)
+void	move_right(t_game *game)
 {
 	game->player.pos_x -= game->player.plane_x * MOVE_SPEED;
 	game->player.pos_y -= game->player.plane_y * MOVE_SPEED;
 }
 
 // on left arraow,  rorate camera counterclock wise,
-	??? need to  muptiple by a matrix
+//? ? ? need to muptiple by a matrix
 
+void	rotate_left(t_game *game)
+{
+	(void)game;
+}
 // on right arrow, rotate camera clockwise
-
-// on esc, close window and exit the programs.
+void	rotate_right(t_game *game)
+{
+	(void)game;
+}

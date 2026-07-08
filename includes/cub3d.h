@@ -6,6 +6,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
+# include <math.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -96,5 +97,20 @@ char			*get_next_line(int fd);
 // rendering
 
 void			put_pixel(t_img *img, int x, int y, int color);
+void			draw_floor(t_game *game, t_img *img);
+void			draw_ceiling(t_game *game, t_img *img);
+
+// listening events
+
+int				on_key_press(int key, t_game *game);
+int				on_key_relase(int key, t_game *game);
+
+// movement functions
+void			move_forward(t_game *game);
+void			move_backward(t_game *game);
+void			move_left(t_game *game);
+void			move_right(t_game *game);
+void			rotate_left(t_game *game);
+void			rotate_right(t_game *game);
 
 #endif

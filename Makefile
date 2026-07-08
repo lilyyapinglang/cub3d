@@ -15,6 +15,7 @@ OBJS_DIR    = objs
 INIT_DIR    = $(SRCS_DIR)/init
 PARSE_DIR   = $(SRCS_DIR)/parsing
 EXIT_DIR    = $(SRCS_DIR)/exit
+RENDER_DIR  = $(SRCS_DIR)/render
 
 SRCS        = $(SRCS_DIR)/main.c \
               $(INIT_DIR)/init_main.c \
@@ -25,7 +26,10 @@ SRCS        = $(SRCS_DIR)/main.c \
               $(PARSE_DIR)/utils.c \
               $(EXIT_DIR)/error.c \
               $(EXIT_DIR)/exit.c \
-              $(EXIT_DIR)/free.c
+              $(EXIT_DIR)/free.c \
+			  $(RENDER_DIR)/movement.c \
+			  $(RENDER_DIR)/draw.c \
+			   $(RENDER_DIR)/event.c
 
 OBJS        = $(patsubst $(SRCS_DIR)/%.c,$(OBJS_DIR)/%.o,$(SRCS))
 

@@ -1,16 +1,12 @@
 #include "../includes/cub3d.h"
-
-static int	on_key_press(int key, t_game *game)
-{
-	if (key == XK_Escape)
-		graceful_exit(game, 0);
-	return (0);
-}
+#include <math.h>
 
 static void	set_hooks(t_game *game)
 {
 	mlx_hook(game->win, KeyPress, KeyPressMask, on_key_press, game);
+	mlx_hook(game->win, KeyRelease, KeyReleaseMask, on_key_relase, game);
 	mlx_hook(game->win, ClientMessage, NoEventMask, handle_exit, game);
+	// mlx_loop_hook(game->win, render_next_frame, game);
 }
 
 int	fake_game_init(t_game *game)
@@ -40,27 +36,15 @@ int	fake_game_init(t_game *game)
 	if (!game->mlx)
 		return (printf("mlx_init failed"), -1);
 	mlx_get_screen_size(game->mlx, &screen_width, &screen_height);
-	// if (width_pixel <= 0 || height_pixel <= 0 || width_pixel > screen_width
-	// 	|| height_pixel > screen_height)
-	// 	return (printf("out of screen size"), -1);
+	if (width_pixel <= 0 || height_pixel <= 0 || width_pixel > screen_width
+		|| height_pixel > screen_height)
+		return (printf("out of screen size"), -1);
 	game->win = mlx_new_window(game->mlx, width_pixel, height_pixel,
 			"Welcome to Magic Game!");
 	if (!game->win)
 		return (printf("mlx_new_window failed"), -1);
 	// imgs_init(game);
 	return (0);
-}
-
-void	put_pixel(t_img *img, int x, int y, int color)
-{
-	char	*pixel;
-
-	if (x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
-	{
-		pixel = img->addr + (y * img->line_length + x * (img->bits_per_pixel
-					/ 8));
-		*(unsigned int *)pixel = color;
-	}
 }
 
 // void	game_loop(void)
@@ -81,7 +65,7 @@ int	main(int argc, char **argv)
 	// 	return (err_msg("", ERR_USAGE, 1));
 	(void)argc;
 	(void)argv;
-	init_all(&game);
+	// init_all(&game);
 	// if (parse_file(&game, argv))
 	// 	return (1);
 	fake_game_init(&game);
@@ -89,11 +73,17 @@ int	main(int argc, char **argv)
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
 	// try to draw a pixel in the center of the window
-	put_pixel(&img, WIN_W / 2, WIN_H / 2, 0xFF0000);
+	// put_pixel(&img, WIN_W / 2, WIN_H / 2, 0xFF0000);
+	// draw a line with pixels
+	// draw_line(game.mlx, game.win, 640, 360, 0, 0, 0xFF0000);
+	draw_ceiling(&game, &img);
+	draw_floor(&game, &img);
 	mlx_put_image_to_window(game.mlx, game.win, img.img, 0, 0);
-	// mlx_loop(game.mlx);
-	// init_mlx(&game);
+	// 1. keyboard events 2. mouse events 3. a part of window needs to be redrawn (expose)
 	set_hooks(&game);
-	// mlx_loop_hook(game.mlx, game_loop, game);
+	// to receive events , mlx_loop is needed
+	mlx_loop(game.mlx);
+	//  init_mlx(&game);
+	//  mlx_loop_hook(game.mlx, game_loop, game);
 	return (0);
 }
