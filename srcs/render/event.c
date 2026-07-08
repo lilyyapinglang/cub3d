@@ -39,3 +39,13 @@ int	on_key_relase(int key, t_game *game)
 	// 		stop_rorate_right(game);
 	return (0);
 }
+
+// window is changed, covered , etc, where redraw is needed
+int	on_expose(void *params)
+{
+	t_game	*game;
+
+	game = (t_game *)params;
+	// game->is_redraw_needed = 1;
+	return (0);
+}

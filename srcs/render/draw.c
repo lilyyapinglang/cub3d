@@ -74,3 +74,20 @@ void	draw_floor(t_game *game, t_img *img)
 		y++;
 	}
 }
+
+void	draw_rectangle(void)
+{
+}
+void	clear_image(t_img *img)
+{
+}
+
+/*draw walls ?? */
+
+void	draw_walls(void)
+{
+	for (y = wall_start_y, y < wall_end_y; y++)
+	{
+		put_pixel(...);
+	}
+}

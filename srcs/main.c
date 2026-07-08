@@ -47,15 +47,6 @@ int	fake_game_init(t_game *game)
 	return (0);
 }
 
-// void	game_loop(void)
-// {
-// 	handle_input(game);
-// 	update_player(game);
-// 	clear_iamge(game);
-// 	render(game);
-// 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
-// }
-
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -72,9 +63,7 @@ int	main(int argc, char **argv)
 	img.img = mlx_new_image(game.mlx, WIN_W, WIN_H);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
-	// try to draw a pixel in the center of the window
 	// put_pixel(&img, WIN_W / 2, WIN_H / 2, 0xFF0000);
-	// draw a line with pixels
 	// draw_line(game.mlx, game.win, 640, 360, 0, 0, 0xFF0000);
 	draw_ceiling(&game, &img);
 	draw_floor(&game, &img);
