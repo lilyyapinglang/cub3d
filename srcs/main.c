@@ -25,10 +25,10 @@ int	fake_game_init(t_game *game)
 	game->player.pos_x = 2.5;
 	game->player.pos_y = 2.5;
 	// FOV = 66 degrees;
-	game->player.dir_x = -1;
-	game->player.dir_y = 0;
-	game->player.plane_x = 0;
-	game->player.plane_y = 0.66;
+	game->player.dir_x = 0;
+	game->player.dir_y = -1;
+	game->player.plane_x = -0.66;
+	game->player.plane_y = 0;
 	game->floor = 0xFFA500;   // ORANGE
 	game->ceiling = 0x0000FF; // BLUE
 	game->win = NULL;

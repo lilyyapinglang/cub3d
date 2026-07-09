@@ -5,13 +5,13 @@ int	on_key_press(int key, t_game *game)
 {
 	if (key == XK_Escape)
 		graceful_exit(game, 0);
-	if (key == XK_W || XK_w)
+	if (key == XK_w)
 		move_forward(game);
-	if (key == XK_S || XK_s)
+	if (key == XK_s)
 		move_backward(game);
-	if (key == XK_A || key == XK_a)
+	if (key == XK_a)
 		move_left(game);
-	if (key == XK_D || XK_d)
+	if (key == XK_d)
 		move_right(game);
 	if (key == XK_Left)
 		rotate_left(game);

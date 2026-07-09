@@ -18,6 +18,7 @@
 # define TEX_SIZE 64
 
 # define MOVE_SPEED 0.25
+# define ROTATION_SPEED 1
 
 # define ERR_USAGE "Required input: ./cub3D map.cub"
 # define ERR_MALLOC "Memory allocation failed"
