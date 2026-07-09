@@ -76,8 +76,18 @@ void	draw_floor(t_game *game, t_img *img)
 	}
 }
 
-// void	draw_rectangle(void *mlx, void *win, int begin_x, int begin_y,
-// 		int end_x, int end_y, int color)
+void	draw_rectangle(t_img *img, int point1_x, int point1_y, int point2_x,
+		int point2_y, int color)
+{
+	// draw 4  lines
+	draw_line(img, point1_x, point1_y, point2_x, point1_y, color);
+	draw_line(img, point1_x, point1_y, point1_x, point2_y, color);
+	draw_line(img, point1_x, point2_y - 1, point2_x, point2_y - 1, color);
+	draw_line(img, point2_x - 1, point1_y, point2_x - 1, point2_y, color);
+}
+
+// void	draw_gradient(t_img *img, int begin_x, int begin_y, int end_x,
+// 		int end_y, int color_1, int color_2)
 // {
 // }
 // void	clear_image(t_img *img)

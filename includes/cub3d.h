@@ -101,6 +101,8 @@ void			draw_floor(t_game *game, t_img *img);
 void			draw_ceiling(t_game *game, t_img *img);
 int				draw_line(t_img *img, int begin_x, int begin_y, int end_x,
 					int end_y, int color);
+void			draw_rectangle(t_img *img, int begin_x, int begin_y, int end_x,
+					int end_y, int color);
 
 // listening events
 
