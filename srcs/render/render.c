@@ -61,18 +61,19 @@ void	clear_image(t_img *img, int color)
 
 void	render_game(t_game *game)
 {
-	put_pixel(&game->img, WIN_W / 2, WIN_H / 2, 0xFF0000);
-	draw_line(&game->img, WIN_W / 2, 0, WIN_W / 2, WIN_H, 0xFF0000);
-	draw_rectangle(&game->img, WIN_W / 2, 0, WIN_W, WIN_H, 0xFF0000);
-	draw_ceiling(game);
+	// put_pixel(&game->img, WIN_W / 2, WIN_H / 2, 0xFF0000);
+	// draw_line(&game->img, WIN_W / 2, 0, WIN_W / 2, WIN_H, 0xFF0000);
 	draw_floor(game);
+	draw_ceiling(game);
+	draw_rectangle(&game->img, WIN_W / 2 - 1, WIN_H / 2 - 1, WIN_W / 2 + 1,
+		WIN_H / 2 + 1, 0xFFA500);
 }
 
 int	game_loop(t_game *game)
 {
 	// handle_input(game);
-	update_game(game);
-	clear_image(&game->img, 0x000000);
+	// update_game(game);
+	// clear_image(&game->img, 0x000000);
 	render_game(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);

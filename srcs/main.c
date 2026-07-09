@@ -29,8 +29,8 @@ int	fake_game_init(t_game *game)
 	game->player.dir_y = 0;
 	game->player.plane_x = 0;
 	game->player.plane_y = 0.66;
-	game->floor = 0x00FF00;
-	game->ceiling = 0x87CEEB;
+	game->floor = 0xFFA500;   // ORANGE
+	game->ceiling = 0x0000FF; // BLUE
 	game->win = NULL;
 	game->mlx = mlx_init();
 	if (!game->mlx)
@@ -59,7 +59,7 @@ int	main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	// init_all(&game);
-	//  init_mlx(&game);
+	// init_mlx(&game);
 	// if (parse_file(&game, argv))
 	// 	return (1);
 	fake_game_init(&game);
