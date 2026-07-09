@@ -58,8 +58,11 @@ void	draw_ceiling(t_game *game)
 	}
 }
 
-void	draw_player(void)
+void	draw_player(t_game *game)
 {
+	draw_rectangle(&game->img, game->player.pos_x * TILE_SIZE,
+		game->player.pos_y * TILE_SIZE, game->player.pos_x * TILE_SIZE + 10,
+		game->player.pos_y * TILE_SIZE + 10, 0xff0000);
 }
 
 void	draw_floor(t_game *game)
@@ -90,6 +93,27 @@ void	draw_rectangle(t_img *img, int point1_x, int point1_y, int point2_x,
 	draw_line(img, point2_x - 1, point1_y, point2_x - 1, point2_y, color);
 }
 
+// void	draw_rectangle(t_img *img, int point1_x, int point1_y, int point2_x,
+// 		int point2_y, int color)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	// int	j;
+// 	// draw 4  lines
+// 	i = point1_x;
+// 	// j = point1_y;
+// 	while (i < point2_x)
+// 	{
+// 		j = point1_y;
+// 		while (j > point2_y)
+// 		{
+// 			put_pixel(img, i, j, color);
+// 			i++;
+// 		}
+// 		j++;
+// 	}
+// }
 // void	draw_gradient(t_img *img, int begin_x, int begin_y, int end_x,
 // 		int end_y, int color_1, int color_2)
 // {

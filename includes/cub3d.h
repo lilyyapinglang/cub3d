@@ -12,8 +12,9 @@
 # include <unistd.h>
 
 # define BUFFER_SIZE 42
-# define WIN_W 960
-# define WIN_H 540
+# define WIN_W 1280
+# define WIN_H 720
+# define TILE_SIZE 16
 # define TEX_SIZE 64
 
 # define MOVE_SPEED 0.25
@@ -99,6 +100,7 @@ char			*get_next_line(int fd);
 void			put_pixel(t_img *img, int x, int y, int color);
 void			draw_floor(t_game *game);
 void			draw_ceiling(t_game *game);
+void			draw_player(t_game *game);
 int				draw_line(t_img *img, int begin_x, int begin_y, int end_x,
 					int end_y, int color);
 void			draw_rectangle(t_img *img, int begin_x, int begin_y, int end_x,

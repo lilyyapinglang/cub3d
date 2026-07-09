@@ -65,8 +65,9 @@ void	render_game(t_game *game)
 	// draw_line(&game->img, WIN_W / 2, 0, WIN_W / 2, WIN_H, 0xFF0000);
 	draw_floor(game);
 	draw_ceiling(game);
-	draw_rectangle(&game->img, WIN_W / 2 - 1, WIN_H / 2 - 1, WIN_W / 2 + 1,
-		WIN_H / 2 + 1, 0xFFA500);
+	draw_player(game);
+	// draw_rectangle(&game->img, WIN_W / 2 - 1, WIN_H / 2 - 1, WIN_W / 2 + 1,
+	// 	WIN_H / 2 + 1, 0xFFA500);
 }
 
 int	game_loop(t_game *game)
