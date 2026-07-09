@@ -42,19 +42,12 @@ void	render_game(t_game *game)
 {
 }
 
-// void	game_loop(void)
-// {
-// 	handle_input(game);
-// 	update_player(game);
-// 	clear_iamge(game);
-// 	render(game);
-// 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
-// }
-
 int	game_loop(t_game *game)
 {
+	// handle_input(game);
 	update_game(game);
+	// 	clear_iamge(game);
 	render_game(game);
-	// mlx_put_image_to_window;
+	// 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
 }

@@ -77,6 +77,7 @@ typedef struct s_game
 	t_texture	tex[4];
 	int			floor;
 	int			ceiling;
+	t_img		img;
 	t_file		file;
 }				t_game;
 
@@ -95,17 +96,15 @@ int				parse_textures(t_game *game, char *line);
 char			*get_next_line(int fd);
 
 // rendering
-
 void			put_pixel(t_img *img, int x, int y, int color);
-void			draw_floor(t_game *game, t_img *img);
-void			draw_ceiling(t_game *game, t_img *img);
+void			draw_floor(t_game *game);
+void			draw_ceiling(t_game *game);
 int				draw_line(t_img *img, int begin_x, int begin_y, int end_x,
 					int end_y, int color);
 void			draw_rectangle(t_img *img, int begin_x, int begin_y, int end_x,
 					int end_y, int color);
 
 // listening events
-
 int				on_key_press(int key, t_game *game);
 int				on_key_relase(int key, t_game *game);
 
@@ -116,5 +115,8 @@ void			move_left(t_game *game);
 void			move_right(t_game *game);
 void			rotate_left(t_game *game);
 void			rotate_right(t_game *game);
+
+// hooks & loop
+int				game_loop(t_game *game);
 
 #endif

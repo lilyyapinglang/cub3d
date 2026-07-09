@@ -40,7 +40,7 @@ int	draw_line(t_img *img, int begin_x, int begin_y, int end_x, int end_y,
 	return (0);
 }
 
-void	draw_ceiling(t_game *game, t_img *img)
+void	draw_ceiling(t_game *game)
 {
 	int	x;
 	int	y;
@@ -51,14 +51,14 @@ void	draw_ceiling(t_game *game, t_img *img)
 		x = 0;
 		while (x < WIN_W)
 		{
-			put_pixel(img, x, y, game->ceiling);
+			put_pixel(&game->img, x, y, game->ceiling);
 			x++;
 		}
 		y++;
 	}
 }
 
-void	draw_floor(t_game *game, t_img *img)
+void	draw_floor(t_game *game)
 {
 	int	x;
 	int	y;
@@ -69,7 +69,7 @@ void	draw_floor(t_game *game, t_img *img)
 		x = 0;
 		while (x < WIN_W)
 		{
-			put_pixel(img, x, y, game->floor);
+			put_pixel(&game->img, x, y, game->floor);
 			x++;
 		}
 		y++;
