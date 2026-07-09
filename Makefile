@@ -29,7 +29,8 @@ SRCS        = $(SRCS_DIR)/main.c \
               $(EXIT_DIR)/free.c \
 			  $(RENDER_DIR)/movement.c \
 			  $(RENDER_DIR)/draw.c \
-			   $(RENDER_DIR)/event.c
+			  $(RENDER_DIR)/event.c \
+			  $(RENDER_DIR)/render.c
 
 OBJS        = $(patsubst $(SRCS_DIR)/%.c,$(OBJS_DIR)/%.o,$(SRCS))
 

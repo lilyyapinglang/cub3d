@@ -9,6 +9,11 @@ void	graceful_exit(t_game *game, int code)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
+	if (game->img.img == NULL)
+	{
+		mlx_destroy_image(game->mlx, game->img.img);
+		free(game->img.img);
+	}
 	free_all(game);
 	exit(code);
 }

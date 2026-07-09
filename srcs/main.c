@@ -6,7 +6,7 @@ static void	set_hooks(t_game *game)
 	mlx_hook(game->win, KeyPress, KeyPressMask, on_key_press, game);
 	mlx_hook(game->win, KeyRelease, KeyReleaseMask, on_key_relase, game);
 	mlx_hook(game->win, ClientMessage, NoEventMask, handle_exit, game);
-	// mlx_loop_hook(game->mlx, game_loop, game);
+	mlx_loop_hook(game->mlx, game_loop, game);
 }
 
 int	fake_game_init(t_game *game)
@@ -44,6 +44,9 @@ int	fake_game_init(t_game *game)
 	if (!game->win)
 		return (printf("mlx_new_window failed"), -1);
 	// imgs_init(game);
+	game->img.img = mlx_new_image(game->mlx, WIN_W, WIN_H);
+	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel,
+			&game->img.line_length, &game->img.endian);
 	return (0);
 }
 
@@ -56,23 +59,13 @@ int	main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	// init_all(&game);
+	//  init_mlx(&game);
 	// if (parse_file(&game, argv))
 	// 	return (1);
 	fake_game_init(&game);
-	game.img.img = mlx_new_image(game.mlx, WIN_W, WIN_H);
-	game.img.addr = mlx_get_data_addr(game.img.img, &game.img.bits_per_pixel,
-			&game.img.line_length, &game.img.endian);
-	// put_pixel(&img, WIN_W / 2, WIN_H / 2, 0xFF0000);
-	// draw_line(&img, WIN_W / 2, 0, WIN_W / 2, WIN_H, 0xFF0000);
-	draw_rectangle(&game.img, WIN_W / 2, 0, WIN_W, WIN_H, 0xFF0000);
-	// draw_ceiling(&game, &img);
-	// draw_floor(&game, &img);
-	mlx_put_image_to_window(game.mlx, game.win, game.img.img, 0, 0);
 	// 1. keyboard events 2. mouse events 3. a part of window needs to be redrawn (expose)
 	set_hooks(&game);
 	// to receive events , mlx_loop is needed, to initiade the loop
 	mlx_loop(game.mlx);
-	//  init_mlx(&game);
-	//  mlx_loop_hook(game.mlx, game_loop, game);
 	return (0);
 }

@@ -20,6 +20,8 @@
 
 void	raycsting(t_game *game, int x)
 {
+	(void)game;
+	(void)x;
 }
 
 void	render(t_game *game)
@@ -29,25 +31,49 @@ void	render(t_game *game)
 	x = 0;
 	while (x < WIN_W)
 	{
-		raycasting(game, x);
+		raycsting(game, x);
 	}
 }
 
 void	update_game(t_game *game)
 {
 	// update player
+	(void)game;
+}
+
+void	clear_image(t_img *img, int color)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < WIN_H)
+	{
+		x = 0;
+		while (x < WIN_W)
+		{
+			put_pixel(img, x, y, color);
+			x++;
+		}
+		y++;
+	}
 }
 
 void	render_game(t_game *game)
 {
+	put_pixel(&game->img, WIN_W / 2, WIN_H / 2, 0xFF0000);
+	draw_line(&game->img, WIN_W / 2, 0, WIN_W / 2, WIN_H, 0xFF0000);
+	draw_rectangle(&game->img, WIN_W / 2, 0, WIN_W, WIN_H, 0xFF0000);
+	draw_ceiling(game);
+	draw_floor(game);
 }
 
 int	game_loop(t_game *game)
 {
 	// handle_input(game);
 	update_game(game);
-	// 	clear_iamge(game);
+	clear_image(&game->img, 0x000000);
 	render_game(game);
-	// 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
 }
