@@ -22,6 +22,7 @@ SRCS        = $(SRCS_DIR)/main.c \
               $(PARSE_DIR)/parse_input.c \
               $(PARSE_DIR)/check_input.c \
               $(PARSE_DIR)/process_cub_file.c \
+              $(PARSE_DIR)/generate_map.c \
               $(PARSE_DIR)/utils.c \
               $(EXIT_DIR)/error.c \
               $(EXIT_DIR)/exit.c \

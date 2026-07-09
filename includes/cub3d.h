@@ -80,6 +80,7 @@ size_t	max_line_width(t_game *game, int start);
 int		parse_file(t_game *game, char **argv);
 int		parse_colors(t_game *game, char *line);
 int		parse_textures(t_game *game, char *line);
+int		create_map(t_game *game);
 char	*get_next_line(int fd);
 
 #endif

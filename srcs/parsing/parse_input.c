@@ -92,5 +92,7 @@ int	parse_file(t_game *game, char **argv)
 	close(game->file.fd);
 	if (dispatch_lines(game))
 		return (1);
+	if (create_map(game))
+		return (1);
 	return (0);
 }
