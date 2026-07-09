@@ -64,9 +64,9 @@ int	main(int argc, char **argv)
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
 	// put_pixel(&img, WIN_W / 2, WIN_H / 2, 0xFF0000);
-	// draw_line(game.mlx, game.win, 640, 360, 0, 0, 0xFF0000);
-	draw_ceiling(&game, &img);
-	draw_floor(&game, &img);
+	draw_line(&img, WIN_W / 2, 0, WIN_W / 2, WIN_H, 0xFF0000);
+	// draw_ceiling(&game, &img);
+	// draw_floor(&game, &img);
 	mlx_put_image_to_window(game.mlx, game.win, img.img, 0, 0);
 	// 1. keyboard events 2. mouse events 3. a part of window needs to be redrawn (expose)
 	set_hooks(&game);

@@ -6,14 +6,15 @@ void	put_pixel(t_img *img, int x, int y, int color)
 
 	if (x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
 	{
+		// TODO
 		pixel = img->addr + (y * img->line_length + x * (img->bits_per_pixel
 					/ 8));
 		*(unsigned int *)pixel = color;
 	}
 }
 
-int	draw_line(void *mlx, void *win, int begin_x, int begin_y, int end_x,
-		int end_y, int color)
+int	draw_line(t_img *img, int begin_x, int begin_y, int end_x, int end_y,
+		int color)
 {
 	double	delta_x;
 	double	delta_y;
@@ -30,7 +31,7 @@ int	draw_line(void *mlx, void *win, int begin_x, int begin_y, int end_x,
 	pixel_y = begin_y;
 	while (number_of_pixels_to_draw)
 	{
-		mlx_pixel_put(mlx, win, pixel_x, pixel_y, color);
+		put_pixel(img, pixel_x, pixel_y, color);
 		// put_pixel(&img, WIN_W / 2, WIN_H / 2, 0xFF0000);
 		pixel_x += delta_x;
 		pixel_y += delta_y;
@@ -75,19 +76,21 @@ void	draw_floor(t_game *game, t_img *img)
 	}
 }
 
-void	draw_rectangle(void)
-{
-}
-void	clear_image(t_img *img)
-{
-}
+// void	draw_rectangle(void *mlx, void *win, int begin_x, int begin_y,
+// 		int end_x, int end_y, int color)
+// {
+// }
+// void	clear_image(t_img *img)
+// {
+// 	// how to clear image ?
+// }
 
 /*draw walls ?? */
 
-void	draw_walls(void)
-{
-	for (y = wall_start_y, y < wall_end_y; y++)
-	{
-		put_pixel(...);
-	}
-}
+// void	draw_walls(void)
+// {
+// 	for (y = wall_start_y, y < wall_end_y; y++)
+// 	{
+// 		put_pixel(...);
+// 	}
+// }

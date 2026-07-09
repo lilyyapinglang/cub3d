@@ -46,6 +46,7 @@ int	on_expose(void *params)
 	t_game	*game;
 
 	game = (t_game *)params;
+	(void)game;
 	// game->is_redraw_needed = 1;
 	return (0);
 }
