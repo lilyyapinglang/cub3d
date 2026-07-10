@@ -11,11 +11,12 @@ static void	set_hooks(t_game *game)
 
 int	fake_game_init(t_game *game)
 {
-	int		width_pixel;
-	int		height_pixel;
-	int		screen_width;
-	int		screen_height;
-	char	*map[] = {"111111", "100001", "10N001", "100001", "111111", NULL};
+	int			width_pixel;
+	int			height_pixel;
+	int			screen_width;
+	int			screen_height;
+	static char	*map[] = {"111111", "100001", "10N001", "100001", "111111",
+			NULL};
 
 	width_pixel = WIN_W;
 	height_pixel = WIN_H;

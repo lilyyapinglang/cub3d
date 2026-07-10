@@ -15,6 +15,9 @@
 # define WIN_W 1280
 # define WIN_H 720
 # define TILE_SIZE 16
+
+# define MINIMAP_START_X 20
+# define MINIMAP_START_Y 20
 # define TEX_SIZE 64
 
 # define MOVE_SPEED 0.01
@@ -117,7 +120,11 @@ int				draw_line(t_img *img, int begin_x, int begin_y, int end_x,
 					int end_y, int color);
 void			draw_rectangle(t_img *img, int begin_x, int begin_y, int end_x,
 					int end_y, int color);
+void			draw_filled_rectangle(t_img *img, int point1_x, int point1_y,
+					int point2_x, int point2_y, int color);
+// draw minimap
 
+void			draw_minimap(t_game *game);
 // listening events
 int				on_key_press(int key, t_game *game);
 int				on_key_relase(int key, t_game *game);
