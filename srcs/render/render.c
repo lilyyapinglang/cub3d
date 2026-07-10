@@ -59,6 +59,21 @@ void	clear_image(t_img *img, int color)
 	}
 }
 
+void	handle_input(t_game *game)
+{
+	if (game->keys.key_w)
+		move_forward(game);
+	if (game->keys.key_s)
+		move_backward(game);
+	if (game->keys.key_a)
+		move_left(game);
+	if (game->keys.key_d)
+		move_right(game);
+	if (game->keys.key_left)
+		rotate_left(game);
+	if (game->keys.key_right)
+		rotate_right(game);
+}
 void	render_game(t_game *game)
 {
 	// put_pixel(&game->img, WIN_W / 2, WIN_H / 2, 0xFF0000);
@@ -73,9 +88,11 @@ void	render_game(t_game *game)
 int	game_loop(t_game *game)
 {
 	// handle_input(game);
+
 	// update_game(game);
 	// clear_image(&game->img, 0x000000);
 	render_game(game);
+	handle_input(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);
 }

@@ -17,9 +17,9 @@
 # define TILE_SIZE 16
 # define TEX_SIZE 64
 
-# define MOVE_SPEED 0.25
+# define MOVE_SPEED 0.01
 // radians, not degrees,  convert to degrees 0.05*180/PI =2.86°
-# define ROTATION_SPEED 0.05
+# define ROTATION_SPEED 0.01
 
 # define ERR_USAGE "Required input: ./cub3D map.cub"
 # define ERR_MALLOC "Memory allocation failed"
@@ -71,6 +71,15 @@ typedef struct s_img
 	int			endian;
 }				t_img;
 
+typedef struct s_key
+{
+	bool		key_w;
+	bool		key_a;
+	bool		key_s;
+	bool		key_d;
+	bool		key_left;
+	bool		key_right;
+}				t_key;
 typedef struct s_game
 {
 	void		*mlx;
@@ -82,6 +91,7 @@ typedef struct s_game
 	int			ceiling;
 	t_img		img;
 	t_file		file;
+	t_key		keys;
 }				t_game;
 
 void			init_all(t_game *game);

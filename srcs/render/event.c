@@ -6,37 +6,34 @@ int	on_key_press(int key, t_game *game)
 	if (key == XK_Escape)
 		graceful_exit(game, 0);
 	if (key == XK_w)
-		move_forward(game);
+		game->keys.key_w = true;
 	if (key == XK_s)
-		move_backward(game);
+		game->keys.key_s = true;
 	if (key == XK_a)
-		move_left(game);
+		game->keys.key_a = true;
 	if (key == XK_d)
-		move_right(game);
+		game->keys.key_d = true;
 	if (key == XK_Left)
-		rotate_left(game);
+		game->keys.key_left = true;
 	if (key == XK_Right)
-		rotate_right(game);
+		game->keys.key_right = true;
 	return (0);
 }
 
 int	on_key_relase(int key, t_game *game)
 {
-	(void)key;
-	(void)game;
-	// release key will stop moving or rotating, how to define ?
-	// 	if (key == XK_W || XK_w)
-	// 		stop_move_forward(game);
-	// 	if (key == XK_S || XK_s)
-	// 		stop_move_backward(game);
-	// 	if (key == XK_A || key == XK_a)
-	// 		stop_move_left(game);
-	// 	if (key == XK_D || XK_d)
-	// 		stop_move_right(game);
-	// 	if (key = XK_Left)
-	// 		stop_rotate_left(game);
-	// 	if (key == XK_Right)
-	// 		stop_rorate_right(game);
+	if (key == XK_w)
+		game->keys.key_w = false;
+	if (key == XK_s)
+		game->keys.key_s = false;
+	if (key == XK_a)
+		game->keys.key_a = false;
+	if (key == XK_d)
+		game->keys.key_d = false;
+	if (key == XK_Left)
+		game->keys.key_left = false;
+	if (key == XK_Right)
+		game->keys.key_right = false;
 	return (0);
 }
 

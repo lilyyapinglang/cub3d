@@ -33,6 +33,12 @@ int	fake_game_init(t_game *game)
 	game->ceiling = 0x0000FF; // BLUE
 	game->win = NULL;
 	game->mlx = mlx_init();
+	game->keys.key_a = false;
+	game->keys.key_d = false;
+	game->keys.key_s = false;
+	game->keys.key_w = false;
+	game->keys.key_left = false;
+	game->keys.key_right = false;
 	if (!game->mlx)
 		return (printf("mlx_init failed"), -1);
 	mlx_get_screen_size(game->mlx, &screen_width, &screen_height);
