@@ -137,6 +137,9 @@ void			move_right(t_game *game);
 void			rotate_left(t_game *game);
 void			rotate_right(t_game *game);
 
+// check collission
+int				check_hit_wall(t_game *game);
+bool			can_player_move_to(t_game *game, double next_x, double next_y);
 // hooks & loop
 int				game_loop(t_game *game);
 

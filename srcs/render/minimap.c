@@ -23,7 +23,7 @@ void	draw_map_tiles(t_game *game)
 		{
 			// printf("y=%d x=%d\n", y, x);
 			// printf("grid[%d] = %p\n", y, (void *)game->map.grid[y]);
-			printf("grid[i][j] is %c \n", game->map.grid[i][j]);
+			// printf("grid[i][j] is %c \n", game->map.grid[i][j]);
 			if (game->map.grid[i][j] == '1')
 				draw_tile(game, i, j, true);
 			else
@@ -39,9 +39,9 @@ void	draw_player(t_game *game)
 	// draw_rectangle(&game->img, game->player.pos_x * TILE_SIZE - 5,
 	// 	game->player.pos_y * TILE_SIZE - 5, game->player.pos_x * TILE_SIZE + 5,
 	// 	game->player.pos_y * TILE_SIZE + 5, 0xff0000);
-	draw_filled_rectangle(&game->img, game->player.pos_x * TILE_SIZE - 5,
-		game->player.pos_y * TILE_SIZE - 5, game->player.pos_x * TILE_SIZE + 5,
-		game->player.pos_y * TILE_SIZE + 5, 0xffff00);
+	draw_filled_rectangle(&game->img, game->player.pos_x * TILE_SIZE - 2.5,
+		game->player.pos_y * TILE_SIZE - 2.5, game->player.pos_x * TILE_SIZE
+		+ 2.5, game->player.pos_y * TILE_SIZE + 2.5, 0xffff00);
 }
 
 void	draw_player_direction(t_game *game)
@@ -54,7 +54,7 @@ void	draw_player_direction(t_game *game)
 	// dir ->
 	start_x = game->player.pos_x;
 	start_y = game->player.pos_y;
-	printf("player direction start point : %f %f", start_x, start_y);
+	// printf("player direction start point : %f %f", start_x, start_y);
 	end_x = game->player.pos_x + game->player.dir_x;
 	end_y = game->player.pos_y + game->player.dir_y;
 	draw_line(&game->img, start_x * TILE_SIZE, start_y * TILE_SIZE, end_x
@@ -73,7 +73,7 @@ void	draw_plane_direction(t_game *game)
 	// dir ->
 	start_x = game->player.pos_x;
 	start_y = game->player.pos_y;
-	printf("player direction start point : %f %f", start_x, start_y);
+	// printf("player direction start point : %f %f", start_x, start_y);
 	end_x = game->player.pos_x + game->player.plane_x;
 	end_y = game->player.pos_y + game->player.plane_y;
 	draw_line(&game->img, start_x * TILE_SIZE, start_y * TILE_SIZE, end_x
