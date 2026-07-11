@@ -32,7 +32,8 @@ SRCS        = $(SRCS_DIR)/main.c \
 			  $(RENDER_DIR)/event.c \
 			  $(RENDER_DIR)/render.c \
 			   $(RENDER_DIR)/minimap.c \
-				$(RENDER_DIR)/collision.c
+				$(RENDER_DIR)/collision.c\
+				$(RENDER_DIR)/raycasting.c
 
 OBJS        = $(patsubst $(SRCS_DIR)/%.c,$(OBJS_DIR)/%.o,$(SRCS))
 

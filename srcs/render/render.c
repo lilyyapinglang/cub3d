@@ -89,6 +89,7 @@ void	render_game(t_game *game)
 	// draw_filled_rectangle(&game->img, WIN_W / 2 - 100, WIN_H / 2 - 100, WIN_W
 	// 	/ 2 + 100, WIN_H / 2 + 100, 0xFFA500);
 	// will add raycasting later, render_world(game); draw wall；
+	raycasting(game);
 	draw_minimap(game);
 	// draw ui , later， FPS: 60 etc 武器 血量 子弹数量
 }
