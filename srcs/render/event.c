@@ -38,6 +38,9 @@ int	on_key_relase(int key, t_game *game)
 }
 
 // window is changed, covered , etc, where redraw is needed
+// another window was covering yours
+// you minimized then restored it
+// the OS requests a redraw
 int	on_expose(void *params)
 {
 	t_game	*game;

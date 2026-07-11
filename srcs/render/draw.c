@@ -46,7 +46,7 @@ void	draw_ceiling(t_game *game)
 	int	y;
 
 	y = 0;
-	while (y < WIN_H / 5)
+	while (y < WIN_H / 2)
 	{
 		x = 0;
 		while (x < WIN_W)
@@ -63,7 +63,7 @@ void	draw_floor(t_game *game)
 	int	x;
 	int	y;
 
-	y = 6 * WIN_H / 7;
+	y = WIN_H / 2;
 	while (y < WIN_H)
 	{
 		x = 0;

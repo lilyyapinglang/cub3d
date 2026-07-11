@@ -14,7 +14,9 @@
 /* for every screen column
 	x from 0 - width
 	cast ray -> hit wall - > calculate distance -> draw vertica lines
-
+ raycast every column
+		↓
+	draw wall slice
 
 */
 
