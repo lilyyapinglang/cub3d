@@ -15,21 +15,23 @@ int	fake_game_init(t_game *game)
 	int			height_pixel;
 	int			screen_width;
 	int			screen_height;
-	static char	*map[] = {"111111", "100001", "10N001", "100001", "111111",
-			NULL};
+	static char	*map[] = {"111111111111", "1N0001000001", "111010111101",
+			"100010000101", "101111010101", "100000010001", "101111111101",
+			"100000000001", "111111111111", NULL};
 
+	// char	*map1[] = {"111111", "100001", "10N001", "100001", "111111", NULL};
 	width_pixel = WIN_W;
 	height_pixel = WIN_H;
 	game->map.grid = map;
-	game->map.height = 5;
-	game->map.width = 6;
-	game->player.pos_x = 2.5;
-	game->player.pos_y = 2.5;
+	game->map.height = 9;
+	game->map.width = 9;
+	game->player.pos_x = 1.5;
+	game->player.pos_y = 1.5;
 	// FOV = 66 degrees;
-	game->player.dir_x = 0;
-	game->player.dir_y = -1;
-	game->player.plane_x = -0.66;
-	game->player.plane_y = 0;
+	game->player.dir_x = -1;
+	game->player.dir_y = 0;
+	game->player.plane_x = 0;
+	game->player.plane_y = 0.66;
 	game->floor = 0xFFA500;   // ORANGE
 	game->ceiling = 0x0000FF; // BLUE
 	game->win = NULL;

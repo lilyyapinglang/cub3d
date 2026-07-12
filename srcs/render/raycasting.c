@@ -6,6 +6,7 @@ void	raycasting(t_game *game)
 	double rayDirY;
 	int mapX;
 	int mapY;
+	//  length of ray from current position to next x or y-side
 	double sideDistX;
 	double sideDistY;
 	double deltaDistX;
@@ -97,7 +98,7 @@ void	raycasting(t_game *game)
 				side = 1;
 			}
 			// Check if ray has hit a wall
-			if (game->map.grid[mapX][mapY] > 0)
+			if (game->map.grid[mapY][mapX] == '1')
 				hit = 1;
 		}
 		// Calculate distance projected on camera direction. This is the shortest distance from the point where the wall is
@@ -111,7 +112,8 @@ void	raycasting(t_game *game)
 		//	but we subtract deltaDist once because one step more into the wall was taken above.
 		if (side == 0)
 			perpWallDist = (sideDistX - deltaDistX);
-		perpWallDist = (sideDistY - deltaDistY);
+		else
+			perpWallDist = (sideDistY - deltaDistY);
 		// Calculate height of line to draw on screen
 		lineHeight = (int)(WIN_H / perpWallDist);
 		// calculate lowest and highest pixel to fill in current stripe
@@ -122,7 +124,7 @@ void	raycasting(t_game *game)
 		if (drawEnd >= WIN_H)
 			drawEnd = WIN_H - 1;
 		// choose wall color
-		switch (game->map.grid[mapX][mapY])
+		switch (game->map.grid[mapY][mapX])
 		{
 		case 1:
 			color = 0xFF0000;
@@ -130,7 +132,7 @@ void	raycasting(t_game *game)
 					// case 2:
 					// 	color = RGB_Green;
 					// 	break ; // green
-					// case 3:
+					// case SSS3:
 					// 	color = RGB_Blue;
 					// 	break ; // blue
 					// case 4:

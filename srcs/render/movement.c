@@ -46,7 +46,7 @@ void	move_backward(t_game *game)
 }
 
 // on A, move left, (perpendicular to the facing direction) ?
-void	move_left(t_game *game)
+void	move_right(t_game *game)
 {
 	double	next_x;
 	double	next_y;
@@ -69,7 +69,7 @@ void	move_left(t_game *game)
 
 // on D, move right (perpendicular to the facing direction)
 
-void	move_right(t_game *game)
+void	move_left(t_game *game)
 {
 	double	next_x;
 	double	next_y;
@@ -95,7 +95,7 @@ void	move_right(t_game *game)
 /*
 to rotate  this point by an angle 𝛼, we use the 2D rotation matrix:
 */
-void	rotate_left(t_game *game)
+void	rotate_right(t_game *game)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -132,7 +132,7 @@ void	rotate_left(t_game *game)
 }
 
 // on right arrow, rotate camera clockwise, dir rotate, plane rotate too
-void	rotate_right(t_game *game)
+void	rotate_left(t_game *game)
 {
 	// change the dir and plane
 	// printf("before right rotate, facing dir :  %f  %f \n",

@@ -60,11 +60,6 @@ typedef struct s_player
 	double		plane_y;
 }				t_player;
 
-typedef struct s_texture
-{
-	char		*path;
-}				t_texture;
-
 typedef struct s_img
 {
 	void		*img;
@@ -73,6 +68,14 @@ typedef struct s_img
 	int			line_length;
 	int			endian;
 }				t_img;
+
+typedef struct s_texture
+{
+	char		*path;
+	int			width;
+	int			height;
+	t_img		img;
+}				t_texture;
 
 typedef struct s_key
 {
@@ -83,6 +86,7 @@ typedef struct s_key
 	bool		key_left;
 	bool		key_right;
 }				t_key;
+
 typedef struct s_game
 {
 	void		*mlx;

@@ -20,23 +20,6 @@
 
 */
 
-void	raycsting(t_game *game, int x)
-{
-	(void)game;
-	(void)x;
-}
-
-void	render(t_game *game)
-{
-	int	x;
-
-	x = 0;
-	while (x < WIN_W)
-	{
-		raycsting(game, x);
-	}
-}
-
 void	update_game(t_game *game)
 {
 	// update player
