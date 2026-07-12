@@ -1,4 +1,12 @@
 #include "../../includes/cub3d.h"
+#include <stdint.h>
+
+typedef struct ss_texture
+{
+	uint32_t	*pixels;
+	int			width;
+	int			height;
+}				tt_texture;
 
 void	raycasting(t_game *game)
 {
@@ -6,7 +14,6 @@ void	raycasting(t_game *game)
 	double rayDirY;
 	int mapX;
 	int mapY;
-	//  length of ray from current position to next x or y-side
 	double sideDistX;
 	double sideDistY;
 	double deltaDistX;
@@ -15,18 +22,20 @@ void	raycasting(t_game *game)
 	int stepX;
 	int stepY;
 	int lineHeight;
-	int color;
+	// int color;
 	int drawStart;
 	int drawEnd;
-	// double oldDirX;
-	// double oldPlaneX;
-	// double oldDirX;
-	// double oldPlaneX;
-	// double planeX;
 	double cameraX;
-	// double frameTime;
-	// double moveSpeed;
-	// double rotSpeed;
+	int pitch;
+	// int drawStart;
+	// int drawEnd;
+	int texX;
+	double step;
+	double texPos;
+	int texY;
+	unsigned int color;
+	int texNum;
+
 	for (int x = 0; x < WIN_W; x++)
 	{
 		// calculate ray position and direction
@@ -37,23 +46,7 @@ void	raycasting(t_game *game)
 		// which box of the map we're in
 		mapX = (int)(game->player.pos_x);
 		mapY = (int)(game->player.pos_y);
-		// length of ray from current position to next x or y-side
-		// length of ray from one x or y-side to next x or y-side
-		// these are derived as:
-		// deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX))
-		// deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY))
-		// which can be simplified to abs(|rayDir|
-		//	/ rayDirX) and abs(|rayDir| / rayDirY)
-		// where |rayDir| is the length of the vector (rayDirX,
-		//	rayDirY). Its length,
-		// unlike (dirX, dirY) is not 1, however this does not matter,
-		//	only the
-		// ratio between deltaDistX and deltaDistY matters,
-		//	due to the way the DDA
-		// stepping further below works. So the values can be computed as below.
-		// Division through zero is prevented,
-		// even though technically that's not
-		// needed in C++ with IEEE 754 floating point values.
+
 		deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX);
 		deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1 / rayDirY);
 		// what direction to step in x or y-direction (either +1 or -1)
@@ -101,54 +94,67 @@ void	raycasting(t_game *game)
 			if (game->map.grid[mapY][mapX] == '1')
 				hit = 1;
 		}
-		// Calculate distance projected on camera direction. This is the shortest distance from the point where the wall is
-		// hit to the camera plane. Euclidean to center camera point would give fisheye effect!
-		// This can be computed as (mapX - posX + (1 - stepX) / 2)
-		//	/ rayDirX for side == 0, or same formula with Y
-		// for size == 1,
-		//	but can be simplified to the code below thanks to how sideDist and deltaDist are computed:
-		// because they were left scaled to |rayDir|. sideDist is the entire length of the ray above after the multiple
-		// steps,
-		//	but we subtract deltaDist once because one step more into the wall was taken above.
+
 		if (side == 0)
 			perpWallDist = (sideDistX - deltaDistX);
 		else
 			perpWallDist = (sideDistY - deltaDistY);
 		// Calculate height of line to draw on screen
 		lineHeight = (int)(WIN_H / perpWallDist);
+
+		pitch = 100;
 		// calculate lowest and highest pixel to fill in current stripe
-		drawStart = -lineHeight / 2 + WIN_H / 2;
+		drawStart = -lineHeight / 2 + WIN_H / 2 + pitch;
 		if (drawStart < 0)
 			drawStart = 0;
-		drawEnd = lineHeight / 2 + WIN_H / 2;
+		drawEnd = lineHeight / 2 + WIN_H / 2 + pitch;
 		if (drawEnd >= WIN_H)
 			drawEnd = WIN_H - 1;
-		// choose wall color
-		switch (game->map.grid[mapY][mapX])
+		// texturing calculations
+		if (side == 0)
 		{
-		case 1:
-			color = 0xFF0000;
-			break ; // red
-					// case 2:
-					// 	color = RGB_Green;
-					// 	break ; // green
-					// case SSS3:
-					// 	color = RGB_Blue;
-					// 	break ; // blue
-					// case 4:
-					// 	color = RGB_White;
-					// 	break ; // white
-					// default:
-					// 	color = RGB_Yellow;
-					// 	break ; // yellow
+			if (rayDirX > 0)
+				texNum = 0;
+			else
+				texNum = 1;
 		}
-		// give x and y sides different brightness
-		if (side == 1)
+		else
 		{
-			color = color / 2;
+			if (rayDirY > 0)
+				texNum = 2;
+			else
+				texNum = 3;
 		}
-		// draw the pixels of the stripe as a vertical line
-		// verLine(x, drawStart, drawEnd, color);
-		draw_line(&game->img, x, drawStart, x, drawEnd, color);
+		// 1 subtracted from it so that texture 0 can be used!
+		// calculate value of wallX
+		double wallX; // where exactly the wall was hit
+		if (side == 0)
+			wallX = game->player.pos_y + perpWallDist * rayDirY;
+		else
+			wallX = game->player.pos_x + perpWallDist * rayDirX;
+		wallX -= floor((wallX));
+		// x coordinate on the texture
+		texX = (int)(wallX * (double)game->tex->width);
+		if (side == 0 && rayDirX > 0)
+			texX = game->tex->width - texX - 1;
+		if (side == 1 && rayDirY < 0)
+			texX = game->tex->width - texX - 1;
+		// TODO: an integer-only bresenham or DDA like algorithm could make the texture coordinate stepping faster
+		// How much to increase the texture coordinate per screen pixel
+		step = 1.0 * game->tex->height / lineHeight;
+		// Starting texture coordinate
+		texPos = (drawStart - pitch - WIN_H / 2 + lineHeight / 2) * step;
+		for (int y = drawStart; y < drawEnd; y++)
+		{
+			// Cast the texture coordinate to integer, and mask with (texHeight
+			//	- 1) in case of overflow
+			texY = (int)texPos & (game->tex->height - 1);
+			texPos += step;
+			color = game->tex[texNum].pixels[texY * game->tex[texNum].width
+				+ texX];
+			// make color darker for y-sides: R,
+			// G and B byte each divided through two with a "shift" and an "and" if (side == 1) color = (color >> 1) & 8355711;
+			put_pixel(&game->img, x, y, color);
+		}
 	}
 }

@@ -9,6 +9,33 @@ static void	set_hooks(t_game *game)
 	mlx_loop_hook(game->mlx, game_loop, game);
 }
 
+void	init_fake_textures(t_game *game)
+{
+	int	x;
+	int	y;
+	int	i;
+
+	for (i = 0; i < 4; i++)
+	{
+		game->tex[i].width = 64;
+		game->tex[i].height = 64;
+		game->tex[i].pixels = malloc(sizeof(uint32_t) * 64 * 64);
+	}
+	for (y = 0; y < 64; y++)
+	{
+		for (x = 0; x < 64; x++)
+		{
+			game->tex[0].pixels[y * 64 + x] = (((x / 8) + (y / 8))
+					% 2) ? 0xFF0000 : 0x880000;
+			game->tex[1].pixels[y * 64 + x] = (((x / 8) + (y / 8))
+					% 2) ? 0x00FF00 : 0x008800;
+			game->tex[2].pixels[y * 64 + x] = (((x / 8) + (y / 8))
+					% 2) ? 0x0000FF : 0x000088;
+			game->tex[3].pixels[y * 64 + x] = (((x / 8) + (y / 8))
+					% 2) ? 0xFFFF00 : 0x888800;
+		}
+	}
+}
 int	fake_game_init(t_game *game)
 {
 	int			width_pixel;
@@ -56,6 +83,7 @@ int	fake_game_init(t_game *game)
 	game->img.img = mlx_new_image(game->mlx, WIN_W, WIN_H);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel,
 			&game->img.line_length, &game->img.endian);
+	init_fake_textures(game);
 	return (0);
 }
 

@@ -8,6 +8,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
+# include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -72,9 +73,10 @@ typedef struct s_img
 typedef struct s_texture
 {
 	char		*path;
+	uint32_t	*pixels;
 	int			width;
 	int			height;
-	t_img		img;
+	// t_img		img;
 }				t_texture;
 
 typedef struct s_key
