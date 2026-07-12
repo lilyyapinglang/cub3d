@@ -1,0 +1,21 @@
+Parser
+    ↓
+MLX
+    ↓
+Image Buffer
+    ↓
+Floor / Ceiling
+    ↓
+Player Movement
+    ↓
+⭐⭐⭐ Minimap ⭐⭐⭐
+    ↓
+⭐⭐⭐ Collision ⭐⭐⭐
+    ↓
+Raycasting (DDA)
+    ↓
+Wall Rendering
+    ↓
+Texture
+    ↓
+Cleanup
