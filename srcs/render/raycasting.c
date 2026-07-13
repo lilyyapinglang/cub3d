@@ -1,12 +1,4 @@
 #include "../../includes/cub3d.h"
-#include <stdint.h>
-
-typedef struct ss_texture
-{
-	uint32_t	*pixels;
-	int			width;
-	int			height;
-}				tt_texture;
 
 void	raycasting(t_game *game)
 {
@@ -150,8 +142,12 @@ void	raycasting(t_game *game)
 			//	- 1) in case of overflow
 			texY = (int)texPos & (game->tex->height - 1);
 			texPos += step;
-			color = game->tex[texNum].pixels[texY * game->tex[texNum].width
-				+ texX];
+			// color = game->tex[texNum].pixels[texY * game->tex[texNum].width
+			// 	+ texX];
+			int offset = texY * game->tex[texNum].line_len + texX
+				* (game->tex[texNum].bpp / 8);
+			color = *(int *)(game->tex[texNum].data + offset);
+
 			// make color darker for y-sides: R,
 			// G and B byte each divided through two with a "shift" and an "and" if (side == 1) color = (color >> 1) & 8355711;
 			put_pixel(&game->img, x, y, color);
