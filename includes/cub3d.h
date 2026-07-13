@@ -72,11 +72,14 @@ typedef struct s_img
 
 typedef struct s_texture
 {
-	char		*path;
-	uint32_t	*pixels;
+	void		*img_ptr;
+	char		*data;
 	int			width;
 	int			height;
-	// t_img		img;
+	int			bpp;
+	int			line_len;
+	int			endian;
+	char		*path;
 }				t_texture;
 
 typedef struct s_key
@@ -152,4 +155,6 @@ void			raycasting(t_game *game);
 // hooks & loop
 int				game_loop(t_game *game);
 
+// textures
+void			load_all_textures(t_game *game);
 #endif
