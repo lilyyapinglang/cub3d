@@ -106,16 +106,16 @@ void	raycasting(t_game *game)
 		if (side == 0)
 		{
 			if (rayDirX > 0)
-				texNum = 0;
+				texNum = 3; // west
 			else
-				texNum = 1;
+				texNum = 2; // esst
 		}
 		else
 		{
 			if (rayDirY > 0)
-				texNum = 2;
+				texNum = 0; // south
 			else
-				texNum = 3;
+				texNum = 1; // north
 		}
 		// 1 subtracted from it so that texture 0 can be used!
 		// calculate value of wallX
