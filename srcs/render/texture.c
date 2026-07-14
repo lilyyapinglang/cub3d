@@ -7,8 +7,8 @@ void	load_texture(t_game *game, t_texture *tex, char *path)
 	if (!tex->img_ptr)
 	{
 		perror("Error loading texture");
-		// freeall(mapa);
-		// exit(1);
+		free_all(game);
+		exit(1);
 	}
 	tex->data = mlx_get_data_addr(tex->img_ptr, &tex->bpp, &tex->line_len,
 			&tex->endian);
