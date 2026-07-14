@@ -10,7 +10,8 @@ bool	can_player_move_to(t_game *game, double next_x, double next_y)
 	printf("grid is %c\n", game->map.grid[(int)next_y][(int)next_x]);
 	if (game->map.grid[(int)next_y][(int)next_x] == '1'
 		|| next_y >= (double)(game->map.height - 1) || next_y <= 0
-		|| next_x >= (double)(game->map.width - 1) || next_x <= 0)
+		|| next_x >= (double)(game->map.width - 1) - MOVE_SPEED
+		|| next_x <= MOVE_SPEED)
 	{
 		printf("i'm at %d %d, %f\
 			%f i hit a wall,i should stop at eh first collisoin point\n",

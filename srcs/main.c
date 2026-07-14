@@ -69,11 +69,11 @@ int	fake_game_init(t_game *game)
 	height_pixel = WIN_H;
 	game->map.grid = map;
 	game->map.height = 9;
-	game->map.width = 9;
+	game->map.width = 12;
 	game->player.pos_x = 1.5;
 	game->player.pos_y = 1.5;
 	// FOV = 66 degrees;
-	game->player.dir_x = -1;
+	game->player.dir_x = 1;
 	game->player.dir_y = 0;
 	game->player.plane_x = 0;
 	game->player.plane_y = 0.66;
