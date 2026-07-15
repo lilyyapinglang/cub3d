@@ -1,4 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/15 17:15:32 by ylang             #+#    #+#             */
+/*   Updated: 2026/07/15 17:15:33 by ylang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
+
+/* for every screen column
+	x from 0 - width
+	cast ray -> hit wall - > calculate distance -> draw vertica lines
+ raycast every column
+		↓
+	draw wall slice
+
+*/
 
 void	raycasting(t_game *game)
 {
@@ -14,13 +35,11 @@ void	raycasting(t_game *game)
 	int stepX;
 	int stepY;
 	int lineHeight;
-	// int color;
 	int drawStart;
 	int drawEnd;
 	double cameraX;
 	int pitch;
-	// int drawStart;
-	// int drawEnd;
+
 	int texX;
 	double step;
 	double texPos;

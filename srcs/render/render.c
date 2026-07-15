@@ -1,30 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/15 17:15:29 by ylang             #+#    #+#             */
+/*   Updated: 2026/07/15 17:15:30 by ylang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 /*
- every frame
-
+ for every frame
  clear image
  cast rays
  draw walls with put_pixels()
  draw floor/ceiling
  mlx_put_image_to_window()
-
 */
-
-/* for every screen column
-	x from 0 - width
-	cast ray -> hit wall - > calculate distance -> draw vertica lines
- raycast every column
-		↓
-	draw wall slice
-
-*/
-
-void	update_game(t_game *game)
-{
-	// update player
-	(void)game;
-}
 
 void	clear_image(t_img *img, int color)
 {
@@ -43,8 +38,7 @@ void	clear_image(t_img *img, int color)
 		y++;
 	}
 }
-//根据当前输入，改变游戏状态。 把输入(Input)转换成游戏行为(Action)
-//具体，6个按键 改变 pos dir 和 plane
+
 void	handle_input(t_game *game)
 {
 	if (game->keys.key_w)
@@ -60,34 +54,23 @@ void	handle_input(t_game *game)
 	if (game->keys.key_right)
 		rotate_right(game);
 }
+
+// last step:draw ui , later， FPS: 60 etc 武器 血量 子弹数量
 void	render_game(t_game *game)
 {
-	// put_pixel(&game->img, WIN_W / 2, WIN_H / 2, 0xFF0000);
-	// draw_line(&game->img, WIN_W / 2, 0, WIN_W / 2, WIN_H, 0xFF0000);
-	// draw_rectangle(&game->img, WIN_W / 2 - 1, WIN_H / 2 - 1, WIN_W / 2 + 1,
-	// 	WIN_H / 2 + 1, 0xFFA500);
 	clear_image(&game->img, 0);
 	draw_floor(game);
 	draw_ceiling(game);
-	// draw_filled_rectangle(&game->img, WIN_W / 2 - 100, WIN_H / 2 - 100, WIN_W
-	// 	/ 2 + 100, WIN_H / 2 + 100, 0xFFA500);
-	// will add raycasting later, render_world(game); draw wall；
 	raycasting(game);
 	draw_minimap(game);
-	// draw ui , later， FPS: 60 etc 武器 血量 子弹数量
 }
 
 /*
-Input
-	↓
-Update
-	↓
-Render
+generally the game logic is always: Input -> Update->Render
 */
 int	game_loop(t_game *game)
 {
 	handle_input(game);
-	update_game(game);
 	render_game(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (0);

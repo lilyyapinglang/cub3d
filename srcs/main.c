@@ -97,11 +97,9 @@ int	fake_game_init(t_game *game)
 			"Welcome to Magic Game!");
 	if (!game->win)
 		return (printf("mlx_new_window failed"), -1);
-	// imgs_init(game);
 	game->img.img = mlx_new_image(game->mlx, WIN_W, WIN_H);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel,
 			&game->img.line_length, &game->img.endian);
-	// init_fake_textures(game);
 	return (0);
 }
 

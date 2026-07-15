@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/15 17:15:38 by ylang             #+#    #+#             */
+/*   Updated: 2026/07/15 17:15:39 by ylang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 void	draw_tile(t_game *game, int y, int x, bool filled)
@@ -33,14 +45,12 @@ void	draw_map_tiles(t_game *game)
 
 void	draw_player(t_game *game)
 {
-	// draw_rectangle(&game->img, game->player.pos_x * TILE_SIZE - 5,
-	// 	game->player.pos_y * TILE_SIZE - 5, game->player.pos_x * TILE_SIZE + 5,
-	// 	game->player.pos_y * TILE_SIZE + 5, 0xff0000);
 	draw_filled_rectangle(&game->img, game->player.pos_x * TILE_SIZE - 2.5,
 		game->player.pos_y * TILE_SIZE - 2.5, game->player.pos_x * TILE_SIZE
 		+ 2.5, game->player.pos_y * TILE_SIZE + 2.5, 0x00ff00);
 }
 
+// green
 void	draw_player_direction(t_game *game)
 {
 	double	start_x;
@@ -48,19 +58,17 @@ void	draw_player_direction(t_game *game)
 	double	end_x;
 	double	end_y;
 
-	// dir ->
 	start_x = game->player.pos_x;
 	start_y = game->player.pos_y;
-	// printf("player direction start point : %f %f", start_x, start_y);
 	end_x = game->player.pos_x + game->player.dir_x;
 	end_y = game->player.pos_y + game->player.dir_y;
 	draw_line(&game->img, start_x * TILE_SIZE, start_y * TILE_SIZE, end_x
-		* TILE_SIZE, end_y * TILE_SIZE, 0x00ff00); // green
+		* TILE_SIZE, end_y * TILE_SIZE, 0x00ff00);
 	draw_filled_rectangle(&game->img, end_x * TILE_SIZE - 2.5, end_y * TILE_SIZE
 		- 2.5, end_x * TILE_SIZE + 2.5, end_y * TILE_SIZE + 2.5, 0xFAFA37);
-	// green
 }
 
+// pink
 void	draw_plane_direction(t_game *game)
 {
 	double	start_x;
@@ -68,24 +76,18 @@ void	draw_plane_direction(t_game *game)
 	double	end_x;
 	double	end_y;
 
-	// dir ->
 	start_x = game->player.pos_x;
 	start_y = game->player.pos_y;
-	// printf("player direction start point : %f %f", start_x, start_y);
 	end_x = game->player.pos_x + game->player.plane_x;
 	end_y = game->player.pos_y + game->player.plane_y;
 	draw_line(&game->img, start_x * TILE_SIZE, start_y * TILE_SIZE, end_x
-		* TILE_SIZE, end_y * TILE_SIZE, 0xFF00FF); // pink
+		* TILE_SIZE, end_y * TILE_SIZE, 0xFF00FF);
 	draw_filled_rectangle(&game->img, end_x * TILE_SIZE - 2.5, end_y * TILE_SIZE
 		- 2.5, end_x * TILE_SIZE + 2.5, end_y * TILE_SIZE + 2.5, 0xFF00FF);
-	// pink
 }
 
 void	draw_minimap(t_game *game)
 {
-	// printf("height = %d\n", game->map.height);
-	// printf("width = %d\n", game->map.width);
-	// printf("grid = %p\n", (void *)game->map.grid);
 	draw_map_tiles(game);
 	draw_player(game);
 	draw_player_direction(game);
