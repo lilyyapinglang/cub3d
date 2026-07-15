@@ -21,9 +21,17 @@
 # define MINIMAP_START_Y 20
 # define TEX_SIZE 64
 
+# define NORTH_TEX 0
+# define SOUTH_TEX 1
+# define WEST_TEX 2
+# define EAST_TEX 3
+
 # define MOVE_SPEED 0.01
 // radians, not degrees,  convert to degrees 0.05*180/PI =2.86°
 # define ROTATION_SPEED 0.01
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846264338327950288
+# endif
 
 # define ERR_USAGE "Required input: ./cub3D map.cub"
 # define ERR_MALLOC "Memory allocation failed"
@@ -70,6 +78,23 @@ typedef struct s_img
 	int			endian;
 }				t_img;
 
+typedef struct s_ray
+{
+	double		rayDirX;
+	double		rayDirY;
+	int			mapX;
+	int			mapY;
+	double		deltaDistX;
+	double		deltaDistY;
+	int			hit;
+	int			side;
+	int			stepX;
+	int			stepY;
+	double		sideDistX;
+	double		sideDistY;
+
+}				t_ray;
+
 typedef struct s_texture
 {
 	void		*img_ptr;
@@ -104,6 +129,7 @@ typedef struct s_game
 	t_img		img;
 	t_file		file;
 	t_key		keys;
+	t_ray		ray;
 }				t_game;
 
 void			init_all(t_game *game);
@@ -132,7 +158,6 @@ void			draw_rectangle(t_img *img, int begin_x, int begin_y, int end_x,
 void			draw_filled_rectangle(t_img *img, int point1_x, int point1_y,
 					int point2_x, int point2_y, int color);
 // draw minimap
-
 void			draw_minimap(t_game *game);
 // listening events
 int				on_key_press(int key, t_game *game);
@@ -146,7 +171,7 @@ void			move_right(t_game *game);
 void			rotate_left(t_game *game);
 void			rotate_right(t_game *game);
 
-// check collission
+// check collision
 bool			can_player_move_to(t_game *game, double next_x, double next_y);
 
 // draw wall aka raycasting

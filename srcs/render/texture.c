@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/15 17:15:20 by ylang             #+#    #+#             */
+/*   Updated: 2026/07/15 19:02:15 by ylang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 void	load_texture(t_game *game, t_texture *tex, char *path)
@@ -7,8 +19,8 @@ void	load_texture(t_game *game, t_texture *tex, char *path)
 	if (!tex->img_ptr)
 	{
 		perror("Error loading texture");
-		// freeall(mapa);
-		// exit(1);
+		free_all(game);
+		exit(1);
 	}
 	tex->data = mlx_get_data_addr(tex->img_ptr, &tex->bpp, &tex->line_len,
 			&tex->endian);
@@ -16,9 +28,8 @@ void	load_texture(t_game *game, t_texture *tex, char *path)
 
 void	load_all_textures(t_game *game)
 {
-	printf("game->tex[0].path %s\n", game->tex[0].path);
-	load_texture(game, &game->tex[0], game->tex[0].path);
-	load_texture(game, &game->tex[1], game->tex[1].path);
-	load_texture(game, &game->tex[2], game->tex[2].path);
-	load_texture(game, &game->tex[3], game->tex[3].path);
+	load_texture(game, &game->tex[NORTH_TEX], game->tex[NORTH_TEX].path);
+	load_texture(game, &game->tex[SOUTH_TEX], game->tex[SOUTH_TEX].path);
+	load_texture(game, &game->tex[WEST_TEX], game->tex[WEST_TEX].path);
+	load_texture(game, &game->tex[EAST_TEX], game->tex[EAST_TEX].path);
 }

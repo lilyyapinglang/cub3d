@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/15 17:15:40 by ylang             #+#    #+#             */
+/*   Updated: 2026/07/15 17:15:41 by ylang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "../../includes/cub3d.h"
 
@@ -41,12 +53,12 @@ int	on_key_relase(int key, t_game *game)
 // another window was covering yours
 // you minimized then restored it
 // the OS requests a redraw
-int	on_expose(void *params)
-{
-	t_game	*game;
+// int	on_expose(void *params)
+// {
+// 	t_game	*game;
 
-	game = (t_game *)params;
-	(void)game;
-	// game->is_redraw_needed = 1;
-	return (0);
-}
+// 	game = (t_game *)params;
+// 	(void)game;
+// 	game->is_redraw_needed = 1;
+// 	return (0);
+// }

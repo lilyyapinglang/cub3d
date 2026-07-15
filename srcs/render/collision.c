@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   collision.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/15 17:15:50 by ylang             #+#    #+#             */
+/*   Updated: 2026/07/15 17:16:01 by ylang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 // hit the wall -> stop  , not conituning
 // if not hit the all, update positions.
-
 bool	can_player_move_to(t_game *game, double next_x, double next_y)
 {
 	printf("next step player at %f %f \n", next_x, next_y);
