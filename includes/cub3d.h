@@ -21,6 +21,11 @@
 # define MINIMAP_START_Y 20
 # define TEX_SIZE 64
 
+# define NORTH_TEX 0
+# define SOUTH_TEX 1
+# define WEST_TEX 2
+# define EAST_TEX 3
+
 # define MOVE_SPEED 0.01
 // radians, not degrees,  convert to degrees 0.05*180/PI =2.86°
 # define ROTATION_SPEED 0.01

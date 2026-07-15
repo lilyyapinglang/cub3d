@@ -1,5 +1,4 @@
 #include "../includes/cub3d.h"
-#include <math.h>
 
 static void	set_hooks(t_game *game)
 {
