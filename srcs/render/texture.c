@@ -6,7 +6,7 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:15:20 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/15 17:16:07 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/15 17:16:36 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ void	load_all_textures(t_game *game)
 	load_texture(game, &game->tex[WEST_TEX], game->tex[WEST_TEX].path);
 	load_texture(game, &game->tex[EAST_TEX], game->tex[EAST_TEX].path);
 }
-S

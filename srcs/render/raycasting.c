@@ -6,7 +6,7 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:15:32 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/15 17:15:33 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/15 18:55:17 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	raycasting(t_game *game)
 	unsigned int color;
 	int texNum;
 
-	for (int x = 0; x < WIN_W; x++)
+	int x = 0;
+	while (x < WIN_W)
 	{
 		// calculate ray position and direction
 		cameraX = 2 * x / (double)WIN_W - 1;
@@ -125,16 +126,16 @@ void	raycasting(t_game *game)
 		if (side == 0)
 		{
 			if (rayDirX > 0)
-				texNum = 3; // west
+				texNum = WEST_TEX; // 3west
 			else
-				texNum = 2; // esst
+				texNum = EAST_TEX; // 2esst
 		}
 		else
 		{
 			if (rayDirY > 0)
-				texNum = 0; // south
+				texNum = NORTH_TEX; // 0south
 			else
-				texNum = 1; // north
+				texNum = SOUTH_TEX; // 1north
 		}
 		// 1 subtracted from it so that texture 0 can be used!
 		// calculate value of wallX
@@ -171,5 +172,6 @@ void	raycasting(t_game *game)
 			// G and B byte each divided through two with a "shift" and an "and" if (side == 1) color = (color >> 1) & 8355711;
 			put_pixel(&game->img, x, y, color);
 		}
+		x++;
 	}
 }
