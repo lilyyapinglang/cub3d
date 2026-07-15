@@ -78,6 +78,23 @@ typedef struct s_img
 	int			endian;
 }				t_img;
 
+typedef struct s_ray
+{
+	double		rayDirX;
+	double		rayDirY;
+	int			mapX;
+	int			mapY;
+	double		deltaDistX;
+	double		deltaDistY;
+	int			hit;
+	int			side;
+	int			stepX;
+	int			stepY;
+	double		sideDistX;
+	double		sideDistY;
+
+}				t_ray;
+
 typedef struct s_texture
 {
 	void		*img_ptr;
@@ -112,6 +129,7 @@ typedef struct s_game
 	t_img		img;
 	t_file		file;
 	t_key		keys;
+	t_ray		ray;
 }				t_game;
 
 void			init_all(t_game *game);

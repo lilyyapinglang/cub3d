@@ -6,7 +6,7 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:17:50 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/15 18:54:07 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/15 19:01:46 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void	load_player(t_game *game)
 		}
 		y++;
 	}
+	set_player_plane_dir(game);
 }
 
 int	fake_game_init(t_game *game)
@@ -129,7 +130,7 @@ int	fake_game_init(t_game *game)
 	int			height_pixel;
 	int			screen_width;
 	int			screen_height;
-	static char	*map[] = {"111111111111", "1N0001000001", "111010111101",
+	static char	*map[] = {"111111111111", "100N01000001", "111010111101",
 			"100010000101", "101111010101", "100000010001", "101111111101",
 			"100000000001", "111111111111", NULL};
 
@@ -140,17 +141,9 @@ int	fake_game_init(t_game *game)
 	game->map.height = 9;
 	game->map.width = 12;
 	load_player(game);
-	set_player_plane_dir(game);
-	printf("posx %f, poxy %f, dir_x %f, dir_y %f, plane_x %f, plane_y %f\n",
-		game->player.pos_x, game->player.pos_y, game->player.dir_x,
-		game->player.dir_y, game->player.plane_x, game->player.plane_y);
-	// game->player.pos_x = 1.5;
-	// game->player.pos_y = 1.5;
-	// // FOV = 66 degrees;
-	// game->player.dir_x = 1;
-	// game->player.dir_y = 0;
-	// game->player.plane_x = 0;
-	// game->player.plane_y = 0.66;
+	// printf("posx %f, poxy %f, dir_x %f, dir_y %f, plane_x %f, plane_y %f\n",
+	// 	game->player.pos_x, game->player.pos_y, game->player.dir_x,
+	// 	game->player.dir_y, game->player.plane_x, game->player.plane_y);
 	game->floor = 0xFFC5D3;   // LIGHT PINK
 	game->ceiling = 0x90D5FF; // LIGHT BLUE
 	game->win = NULL;
