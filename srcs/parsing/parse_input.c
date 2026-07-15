@@ -33,7 +33,7 @@ static int	read_file(t_game *game)
 	return (0);
 }
 
-static int	dispatch_line(t_game *game, char *line)
+static int	line_treatement(t_game *game, char *line)
 {
 	if (!ft_strncmp(line, "NO ", 3)
 		|| !ft_strncmp(line, "SO ", 3)
@@ -61,7 +61,7 @@ static int	dispatch_lines(t_game *game)
 			i++;
 			continue ;
 		}
-		ret = dispatch_line(game, line);
+		ret = line_treatement(game, line);
 		if (ret == -1)
 			break ;
 		if (ret)
@@ -93,6 +93,8 @@ int	parse_file(t_game *game, char **argv)
 	if (dispatch_lines(game))
 		return (1);
 	if (create_map(game))
+		return (1);
+	if (validate_map(game))
 		return (1);
 	return (0);
 }
