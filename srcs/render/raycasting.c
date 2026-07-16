@@ -6,7 +6,7 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:15:32 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/16 18:04:45 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/16 18:11:23 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ double	get_wall_hit_pos(t_game *game)
 	wallX -= floor((wallX));
 	return (wallX);
 }
+
 void	draw_texture_by_pixel(t_game *game, int pitch, int texNum, int x)
 {
 	int				texX;
@@ -131,13 +132,7 @@ void	draw_texture_by_pixel(t_game *game, int pitch, int texNum, int x)
 	int				texY;
 	unsigned int	color;
 
-	double wallX; // where exactly the wall was hit
-	if (game->ray.side == 0)
-		wallX = game->player.pos_y + game->ray.perpWallDist * game->ray.rayDirY;
-	else
-		wallX = game->player.pos_x + game->ray.perpWallDist * game->ray.rayDirX;
-	wallX -= floor((wallX));
-	texX = (int)(wallX * (double)game->tex->width);
+	texX = (int)(get_wall_hit_pos(game) * (double)game->tex->width);
 	if (game->ray.side == 0 && game->ray.rayDirX > 0)
 		texX = game->tex->width - texX - 1;
 	if (game->ray.side == 1 && game->ray.rayDirY < 0)
@@ -196,7 +191,6 @@ void	raycasting(t_game *game)
 		calculate_strip(game, pitch);
 		// texturing calculations
 		texNum = texture_calculations(game);
-		// wallX = get_wall_hit_pos(game);
 		draw_texture_by_pixel(game, pitch, texNum, x);
 		x++;
 	}
