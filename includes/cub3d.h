@@ -92,6 +92,10 @@ typedef struct s_ray
 	int			stepY;
 	double		sideDistX;
 	double		sideDistY;
+	double		perpWallDist;
+	double		lineHeight;
+	double		drawStart;
+	double		drawEnd;
 
 }				t_ray;
 
