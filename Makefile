@@ -28,13 +28,15 @@ SRCS        = $(SRCS_DIR)/main.c \
               $(EXIT_DIR)/exit.c \
               $(EXIT_DIR)/free.c \
 			  $(RENDER_DIR)/movement.c \
+			   $(RENDER_DIR)/rotate.c\
 			  $(RENDER_DIR)/draw.c \
 			  $(RENDER_DIR)/event.c \
 			  $(RENDER_DIR)/render.c \
 			   $(RENDER_DIR)/minimap.c \
 				$(RENDER_DIR)/collision.c\
-				$(RENDER_DIR)/raycasting.c \
-				$(RENDER_DIR)/texture.c
+				$(RENDER_DIR)/raycasting_1.c \
+				$(RENDER_DIR)/raycasting_2.c \
+				$(RENDER_DIR)/texture.c 
 
 OBJS        = $(patsubst $(SRCS_DIR)/%.c,$(OBJS_DIR)/%.o,$(SRCS))
 

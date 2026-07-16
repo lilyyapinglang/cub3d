@@ -6,7 +6,7 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:17:50 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/16 18:58:35 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/16 19:27:01 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,6 @@ static void	set_hooks(t_game *game)
 	mlx_hook(game->win, ClientMessage, NoEventMask, handle_exit, game);
 	mlx_loop_hook(game->mlx, game_loop, game);
 }
-
-// void	init_fake_textures(t_game *game)
-// {
-// 	int	x;
-// 	int	y;
-// 	int	i;
-
-// 	for (i = 0; i < 4; i++)
-// 	{
-// 		game->tex[i].width = 64;
-// 		game->tex[i].height = 64;
-// 		game->tex[i].pixels = malloc(sizeof(uint32_t) * 64 * 64);
-// 	}
-// 	for (y = 0; y < 64; y++)
-// 	{
-// 		for (x = 0; x < 64; x++)
-// 		{
-// 			game->tex[0].pixels[y * 64 + x] = (((x / 8) + (y / 8))
-// 					% 2) ? 0xFF0000 : 0x880000;
-// 			game->tex[1].pixels[y * 64 + x] = (((x / 8) + (y / 8))
-// 					% 2) ? 0x00FF00 : 0x008800;
-// 			game->tex[2].pixels[y * 64 + x] = (((x / 8) + (y / 8))
-// 					% 2) ? 0x0000FF : 0x000088;
-// 			game->tex[3].pixels[y * 64 + x] = (((x / 8) + (y / 8))
-// 					% 2) ? 0xFFFF00 : 0x888800;
-// 		}
-// 	}
-// }
 
 void	init_fake_texture_from_file(t_game *game)
 {
@@ -124,30 +96,18 @@ void	load_player(t_game *game)
 	set_player_plane_dir(game);
 }
 
-int	fake_game_init(t_game *game)
+int	fake_data(t_game *game)
 {
-	int			width_pixel;
-	int			height_pixel;
-	int			screen_width;
-	int			screen_height;
 	static char	*map[] = {"111111111111", "100N01000001", "111010111101",
 			"100010000101", "101111010101", "100000010001", "101111111101",
 			"100000000001", "111111111111", NULL};
 
-	// char	*map1[] = {"111111", "100001", "10N001", "100001", "111111", NULL};
-	width_pixel = WIN_W;
-	height_pixel = WIN_H;
 	game->map.grid = map;
 	game->map.height = 9;
 	game->map.width = 12;
 	load_player(game);
-	// printf("posx %f, poxy %f, dir_x %f, dir_y %f, plane_x %f, plane_y %f\n",
-	// 	game->player.pos_x, game->player.pos_y, game->player.dir_x,
-	// 	game->player.dir_y, game->player.plane_x, game->player.plane_y);
 	game->floor = 0xFFC5D3;   // LIGHT PINK
 	game->ceiling = 0x90D5FF; // LIGHT BLUE
-	game->win = NULL;
-	game->mlx = mlx_init();
 	game->keys.key_a = false;
 	game->keys.key_d = false;
 	game->keys.key_s = false;
@@ -155,20 +115,6 @@ int	fake_game_init(t_game *game)
 	game->keys.key_left = false;
 	game->keys.key_right = false;
 	init_fake_texture_from_file(game);
-	if (!game->mlx)
-		return (printf("mlx_init failed"), -1);
-	mlx_get_screen_size(game->mlx, &screen_width, &screen_height);
-	if (width_pixel <= 0 || height_pixel <= 0 || width_pixel > screen_width
-		|| height_pixel > screen_height)
-		return (printf("out of screen size"), -1);
-	game->win = mlx_new_window(game->mlx, width_pixel, height_pixel,
-			"Welcome to Magic Game!");
-	if (!game->win)
-		return (printf("mlx_new_window failed"), -1);
-	// initiate a big image;
-	game->img.img = mlx_new_image(game->mlx, WIN_W, WIN_H);
-	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel,
-			&game->img.line_length, &game->img.endian);
 	return (0);
 }
 
@@ -180,11 +126,11 @@ int	main(int argc, char **argv)
 	// 	return (err_msg("", ERR_USAGE, 1));
 	(void)argc;
 	(void)argv;
-	// init_all(&game);
-	// init_mlx(&game);
+	init_all(&game);
+	init_mlx(&game);
 	// if (parse_file(&game, argv))
 	// 	return (1);
-	fake_game_init(&game);
+	fake_data(&game);
 	// 1. keyboard events 2. mouse events 3. a part of window needs to be redrawn (expose)
 	set_hooks(&game);
 	// to receive events , mlx_loop is needed, to initiade the loop

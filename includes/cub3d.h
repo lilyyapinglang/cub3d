@@ -39,6 +39,7 @@
 # define ERR_FILE_FORMAT ".cub and .xpm file extensions required"
 # define ERR_MLX_INIT "Failed to initialize mlx"
 # define ERR_MLX_WIN "Failed to create mlx window"
+# define ERR_MLX_OUT_SCREEN "Out of screen size"
 # define ERR_MLX_IMG "Failed to create mlx image"
 # define ERR_TEX_MISSING "Texture files missing"
 # define ERR_TEX_RGB "RGB value is invalid"
@@ -68,6 +69,12 @@ typedef struct s_player
 	double		plane_x;
 	double		plane_y;
 }				t_player;
+
+typedef struct s_point
+{
+	int			x;
+	int			y;
+}				t_point;
 
 typedef struct s_img
 {
@@ -182,4 +189,9 @@ int				game_loop(t_game *game);
 
 // textures
 void			load_all_textures(t_game *game);
+
+// raycasting
+void			init_ray_params(int x, t_game *game);
+void			cal_step_n_sidedist(t_game *game);
+void			perform_dda(t_game *game);
 #endif

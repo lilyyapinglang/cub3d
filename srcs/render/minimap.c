@@ -6,7 +6,7 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:15:38 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/15 17:15:39 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/16 19:34:13 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	draw_map_tiles(t_game *game)
 	int	j;
 
 	i = 0;
-	j = 0;
 	while (i < game->map.height)
 	{
 		j = 0;
@@ -43,21 +42,17 @@ void	draw_map_tiles(t_game *game)
 	}
 }
 
-void	draw_player(t_game *game)
-{
-	draw_filled_rectangle(&game->img, game->player.pos_x * TILE_SIZE - 2.5,
-		game->player.pos_y * TILE_SIZE - 2.5, game->player.pos_x * TILE_SIZE
-		+ 2.5, game->player.pos_y * TILE_SIZE + 2.5, 0x00ff00);
-}
-
 // green
-void	draw_player_direction(t_game *game)
+void	draw_player_n_viewing_direction(t_game *game)
 {
 	double	start_x;
 	double	start_y;
 	double	end_x;
 	double	end_y;
 
+	draw_filled_rectangle(&game->img, game->player.pos_x * TILE_SIZE - 2.5,
+		game->player.pos_y * TILE_SIZE - 2.5, game->player.pos_x * TILE_SIZE
+		+ 2.5, game->player.pos_y * TILE_SIZE + 2.5, 0x00ff00);
 	start_x = game->player.pos_x;
 	start_y = game->player.pos_y;
 	end_x = game->player.pos_x + game->player.dir_x;
@@ -89,7 +84,6 @@ void	draw_plane_direction(t_game *game)
 void	draw_minimap(t_game *game)
 {
 	draw_map_tiles(game);
-	draw_player(game);
-	draw_player_direction(game);
+	draw_player_n_viewing_direction(game);
 	draw_plane_direction(game);
 }
