@@ -70,6 +70,12 @@ typedef struct s_player
 	double		plane_y;
 }				t_player;
 
+typedef struct s_point
+{
+	int			x;
+	int			y;
+}				t_point;
+
 typedef struct s_img
 {
 	void		*img;
