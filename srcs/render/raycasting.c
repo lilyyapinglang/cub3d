@@ -6,7 +6,7 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:15:32 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/16 18:11:23 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/16 19:04:37 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,9 +144,9 @@ void	draw_texture_by_pixel(t_game *game, int pitch, int texNum, int x)
 	{
 		texY = (int)texPos & (game->tex->height - 1);
 		texPos += step;
-		color = *(int *)(game->tex[texNum].data + texY
-				* game->tex[texNum].line_len + texX * (game->tex[texNum].bpp
-					/ 8));
+		color = *(int *)(game->tex[texNum].img.addr + texY
+				* game->tex[texNum].img.line_length + texX
+				* (game->tex[texNum].img.bits_per_pixel / 8));
 		if (game->ray.side == 1)
 			color = (color >> 1) & 8355711;
 		put_pixel(&game->img, x, y, color);
