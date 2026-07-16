@@ -183,4 +183,9 @@ int				game_loop(t_game *game);
 
 // textures
 void			load_all_textures(t_game *game);
+
+// raycasting
+void			init_ray_params(int x, t_game *game);
+void			cal_step_n_sidedist(t_game *game);
+void			perform_dda(t_game *game);
 #endif
