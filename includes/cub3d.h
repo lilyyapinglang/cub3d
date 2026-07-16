@@ -39,6 +39,7 @@
 # define ERR_FILE_FORMAT ".cub and .xpm file extensions required"
 # define ERR_MLX_INIT "Failed to initialize mlx"
 # define ERR_MLX_WIN "Failed to create mlx window"
+# define ERR_MLX_OUT_SCREEN "Out of screen size"
 # define ERR_MLX_IMG "Failed to create mlx image"
 # define ERR_TEX_MISSING "Texture files missing"
 # define ERR_TEX_RGB "RGB value is invalid"
