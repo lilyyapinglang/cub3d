@@ -6,7 +6,7 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:15:20 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/15 19:02:15 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/16 19:06:48 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	load_texture(t_game *game, t_texture *tex, char *path)
 {
-	tex->img_ptr = mlx_xpm_file_to_image(game->mlx, path, &tex->width,
+	tex->img.img = mlx_xpm_file_to_image(game->mlx, path, &tex->width,
 			&tex->height);
-	if (!tex->img_ptr)
+	if (!tex->img.img)
 	{
 		perror("Error loading texture");
 		free_all(game);
 		exit(1);
 	}
-	tex->data = mlx_get_data_addr(tex->img_ptr, &tex->bpp, &tex->line_len,
-			&tex->endian);
+	tex->img.addr = mlx_get_data_addr(tex->img.img, &tex->img.bits_per_pixel,
+			&tex->img.line_length, &tex->img.endian);
 }
 
 void	load_all_textures(t_game *game)

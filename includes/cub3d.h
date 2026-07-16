@@ -78,6 +78,14 @@ typedef struct s_img
 	int			endian;
 }				t_img;
 
+typedef struct s_texture
+{
+	int			width;
+	int			height;
+	t_img		img;
+	char		*path;
+}				t_texture;
+
 typedef struct s_ray
 {
 	double		rayDirX;
@@ -98,18 +106,6 @@ typedef struct s_ray
 	double		drawEnd;
 
 }				t_ray;
-
-typedef struct s_texture
-{
-	void		*img_ptr;
-	char		*data;
-	int			width;
-	int			height;
-	int			bpp;
-	int			line_len;
-	int			endian;
-	char		*path;
-}				t_texture;
 
 typedef struct s_key
 {
