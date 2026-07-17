@@ -33,3 +33,18 @@ size_t	max_line_width(t_game *game, int start)
 	}
 	return (max);
 }
+
+int	validate_map(t_game *game)
+{
+	if (game->map.height == 0)
+		return (err_msg("", ERR_MAP_MISSING, 1));
+	if (check_map_size(game))
+		return (1);
+	if (check_chars(game))
+		return (1);
+	if (check_player(game))
+		return (1);
+	if (check_borders(game))
+		return (1);
+	return (0);
+}

@@ -44,6 +44,10 @@
 # define ERR_TEX_MISSING "Texture files missing"
 # define ERR_TEX_RGB "RGB value is invalid"
 # define ERR_MAP_MISSING "Map data missing"
+# define ERR_MAP_SIZE "Map must be at least 3x3"
+# define ERR_MAP_CHARS "Invalid character in map"
+# define ERR_MAP_PLAYER "Map must contain exactly one player"
+# define ERR_MAP_OPEN "Map is not enclosed by walls"
 
 typedef struct s_file
 {
@@ -151,6 +155,12 @@ size_t			max_line_width(t_game *game, int start);
 int				parse_file(t_game *game, char **argv);
 int				parse_colors(t_game *game, char *line);
 int				parse_textures(t_game *game, char *line);
+int				create_map(t_game *game);
+int				check_map_size(t_game *game);
+int				check_borders(t_game *game);
+int				check_chars(t_game *game);
+int				check_player(t_game *game);
+int				validate_map(t_game *game);
 char			*get_next_line(int fd);
 
 // rendering
