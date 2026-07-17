@@ -6,7 +6,7 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:17:50 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/17 15:39:52 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/17 20:06:58 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,6 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (err_msg("", ERR_USAGE, 1));
-	(void)argc;
-	(void)argv;
 	init_all(&game);
 	init_mlx(&game);
 	if (parse_file(&game, argv))
