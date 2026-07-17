@@ -14,7 +14,7 @@ void	graceful_exit(t_game *game, int code)
 		mlx_destroy_image(game->mlx, game->img.img);
 		free(game->img.img);
 	}
-	// free_all(game);
+	free_all(game);
 	exit(code);
 }
 
