@@ -27,6 +27,8 @@ size_t	max_line_width(t_game *game, int start)
 	while (game->file.file_content[start])
 	{
 		len = ft_strlen(game->file.file_content[start]);
+		if (len > 0 && game->file.file_content[start][len - 1] == '\n')
+			len--;
 		if (len > max)
 			max = len;
 		start++;
