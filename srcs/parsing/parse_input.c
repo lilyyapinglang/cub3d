@@ -35,13 +35,10 @@ static int	read_file(t_game *game)
 
 static int	line_treatement(t_game *game, char *line)
 {
-	if (!ft_strncmp(line, "NO ", 3)
-		|| !ft_strncmp(line, "SO ", 3)
-		|| !ft_strncmp(line, "WE ", 3)
-		|| !ft_strncmp(line, "EA ", 3))
+	if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
+		|| !ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "EA ", 3))
 		return (parse_textures(game, line));
-	if (!ft_strncmp(line, "F ", 2)
-		|| !ft_strncmp(line, "C ", 2))
+	if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
 		return (parse_colors(game, line));
 	return (-1);
 }

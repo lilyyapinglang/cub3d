@@ -1,7 +1,7 @@
 NAME        = cub3d
 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g3 -Iincludes -Ilibft -Iminilibx-linux
+CFLAGS = -Wall -Wextra -Werror -g3 -std=gnu17 -Iincludes -Ilibft -Iminilibx-linux
 LDFLAGS     = -lXext -lX11 -lm
 
 LIBFT_DIR   = libft
@@ -15,6 +15,7 @@ OBJS_DIR    = objs
 INIT_DIR    = $(SRCS_DIR)/init
 PARSE_DIR   = $(SRCS_DIR)/parsing
 EXIT_DIR    = $(SRCS_DIR)/exit
+RENDER_DIR  = $(SRCS_DIR)/render
 
 SRCS        = $(SRCS_DIR)/main.c \
               $(INIT_DIR)/init_main.c \
@@ -28,7 +29,17 @@ SRCS        = $(SRCS_DIR)/main.c \
               $(PARSE_DIR)/utils.c \
               $(EXIT_DIR)/error.c \
               $(EXIT_DIR)/exit.c \
-              $(EXIT_DIR)/free.c
+              $(EXIT_DIR)/free.c \
+			  $(RENDER_DIR)/movement.c \
+			   $(RENDER_DIR)/rotate.c\
+			  $(RENDER_DIR)/draw.c \
+			  $(RENDER_DIR)/event.c \
+			  $(RENDER_DIR)/render.c \
+			   $(RENDER_DIR)/minimap.c \
+				$(RENDER_DIR)/collision.c\
+				$(RENDER_DIR)/raycasting_1.c \
+				$(RENDER_DIR)/raycasting_2.c \
+				$(RENDER_DIR)/texture.c 
 
 OBJS        = $(patsubst $(SRCS_DIR)/%.c,$(OBJS_DIR)/%.o,$(SRCS))
 
