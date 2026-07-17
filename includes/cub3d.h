@@ -143,25 +143,25 @@ typedef struct s_game
 	t_ray		ray;
 }				t_game;
 
-void	init_all(t_game *game);
-void	init_mlx(t_game *game);
-void	graceful_exit(t_game *game, int code);
-int		handle_exit(t_game *game);
-int		free_all(t_game *game);
-void	free_2d(void **arr);
-int		err_msg(char *detail, char *msg, int code);
-int		is_valid_file(char *arg, bool cub);
-size_t	max_line_width(t_game *game, int start);
-int		parse_file(t_game *game, char **argv);
-int		parse_colors(t_game *game, char *line);
-int		parse_textures(t_game *game, char *line);
-int		create_map(t_game *game);
-int		check_map_size(t_game *game);
-int		check_borders(t_game *game);
-int		check_chars(t_game *game);
-int		check_player(t_game *game);
-int		validate_map(t_game *game);
-char	*get_next_line(int fd);
+void			init_all(t_game *game);
+void			init_mlx(t_game *game);
+void			graceful_exit(t_game *game, int code);
+int				handle_exit(t_game *game);
+int				free_all(t_game *game);
+void			free_2d(void **arr);
+int				err_msg(char *detail, char *msg, int code);
+int				is_valid_file(char *arg, bool cub);
+size_t			max_line_width(t_game *game, int start);
+int				parse_file(t_game *game, char **argv);
+int				parse_colors(t_game *game, char *line);
+int				parse_textures(t_game *game, char *line);
+int				create_map(t_game *game);
+int				check_map_size(t_game *game);
+int				check_borders(t_game *game);
+int				check_chars(t_game *game);
+int				check_player(t_game *game);
+int				validate_map(t_game *game);
+char			*get_next_line(int fd);
 
 // rendering
 void			put_pixel(t_img *img, int x, int y, int color);
