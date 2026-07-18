@@ -6,7 +6,7 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:15:40 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/17 20:34:58 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/18 18:59:08 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	on_key_press(int key, t_game *game)
 {
 	if (key == XK_Escape)
-		graceful_exit(game, 0);
+		handle_exit(game);
 	if (key == XK_w)
 		game->keys.key_w = true;
 	if (key == XK_s)
