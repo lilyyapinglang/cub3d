@@ -6,7 +6,7 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:15:32 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/16 20:01:44 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/18 16:06:51 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_ray_params(int x, t_game *game)
 		game->ray.deltaDistX = 1e30;
 	else
 		game->ray.deltaDistX = fabs(1.0 / game->ray.rayDirX);
-	if (game->ray.deltaDistY == 0)
+	if (game->ray.rayDirY == 0)
 		game->ray.deltaDistY = 1e30;
 	else
 		game->ray.deltaDistY = fabs(1 / game->ray.rayDirY);
