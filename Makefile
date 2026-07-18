@@ -1,6 +1,6 @@
 NAME        = cub3d
 
-CC          = gcc
+CC          = cc
 CFLAGS = -Wall -Wextra -Werror -g3 -std=gnu17 -Iincludes -Ilibft -Iminilibx-linux
 LDFLAGS     = -lXext -lX11 -lm
 
