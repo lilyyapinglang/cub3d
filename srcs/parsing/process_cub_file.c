@@ -13,27 +13,21 @@ static int	get_tex_index(char *line)
 	return (-1);
 }
 
-static char	*clean_path(char *line)
-{
-	size_t	len;
-
-	len = ft_strlen(line);
-	if (len > 0 && line[len - 1] == '\n')
-		line[len - 1] = '\0';
-	return (line);
-}
-
 int	parse_textures(t_game *game, char *line)
 {
 	int		i;
+	size_t	len;
 	char	*path;
 
 	i = get_tex_index(line);
 	if (i == -1)
 		return (1);
-	path = clean_path(ft_strdup(line + 3));
+	path = ft_strdup(line + 3);
 	if (!path)
 		return (err_msg("", ERR_MALLOC, 1));
+	len = ft_strlen(path);
+	if (len > 0 && path[len - 1] == '\n')
+		path[len - 1] = '\0';
 	if (game->tex[i].path)
 		free(game->tex[i].path);
 	game->tex[i].path = path;
@@ -56,6 +50,20 @@ static int	validate_rgb(char **split)
 	return (0);
 }
 
+static void	set_color(t_game *game, char id, int color)
+{
+	if (id == 'F')
+	{
+		game->floor = color;
+		game->has_floor = true;
+	}
+	else
+	{
+		game->ceiling = color;
+		game->has_ceiling = true;
+	}
+}
+
 int	parse_colors(t_game *game, char *line)
 {
 	char	**split;
@@ -75,9 +83,6 @@ int	parse_colors(t_game *game, char *line)
 	g = ft_atoi(split[1]);
 	b = ft_atoi(split[2]);
 	free_2d((void **)split);
-	if (line[0] == 'F')
-		game->floor = (r << 16) | (g << 8) | b;
-	else
-		game->ceiling = (r << 16) | (g << 8) | b;
+	set_color(game, line[0], (r << 16) | (g << 8) | b);
 	return (0);
 }

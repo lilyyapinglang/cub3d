@@ -19,8 +19,7 @@ void	load_texture(t_game *game, t_texture *tex, char *path)
 	if (!tex->img.img)
 	{
 		perror("Error loading texture");
-		free_all(game);
-		exit(1);
+		graceful_exit(game, 1);
 	}
 	tex->img.addr = mlx_get_data_addr(tex->img.img, &tex->img.bits_per_pixel,
 			&tex->img.line_length, &tex->img.endian);

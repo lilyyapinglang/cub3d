@@ -84,14 +84,13 @@ int	parse_file(t_game *game, char **argv)
 		return (err_msg("", ERR_MALLOC, 1));
 	game->file.fd = open(argv[1], O_RDONLY);
 	if (game->file.fd < 0)
-		return (err_msg(argv[1], ERR_FILE_OPEN, 1));
+		graceful_exit(game, 1);
 	read_file(game);
 	close(game->file.fd);
-	if (dispatch_lines(game))
-		return (1);
-	if (create_map(game))
-		return (1);
-	if (validate_map(game))
-		return (1);
+	get_next_line(-1);
+	if (dispatch_lines(game) || validate_config(game)
+		|| create_map(game) || check_trailing_lines(game)
+		|| validate_map(game))
+		graceful_exit(game, 1);
 	return (0);
 }

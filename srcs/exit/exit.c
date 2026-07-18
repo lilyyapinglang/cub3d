@@ -4,7 +4,6 @@ void	graceful_exit(t_game *game, int code)
 {
 	int	i;
 
-	fprintf(stderr, "pointer = %p, ", game->img.img);
 	i = 0;
 	while (i < 4)
 	{
