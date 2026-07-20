@@ -1,4 +1,4 @@
-NO ./texture/fake.xpm
+SO ./texture/south64.xpm
 SO ./texture/south64.xpm
 WE ./texture/west64.xpm
 EA ./texture/east64.xpm
