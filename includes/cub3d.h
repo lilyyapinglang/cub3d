@@ -6,7 +6,7 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:30:06 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/20 18:31:44 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/20 19:58:28 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ typedef struct s_player
 
 typedef struct s_point
 {
-	int			x;
-	int			y;
+	double		x;
+	double		y;
 }				t_point;
 
 typedef struct s_img
@@ -190,15 +190,17 @@ char			*get_next_line(int fd);
 
 // rendering
 void			put_pixel(t_img *img, int x, int y, int color);
+
+void			draw_player(t_game *game);
+int				draw_line(t_img *img, t_point begin, t_point end, int color);
+
+void			draw_rectangle(t_img *img, t_point point1, t_point point2,
+					int color);
+void			draw_filled_rectangle(t_img *img, t_point point1,
+					t_point point2, int color);
+
 void			draw_floor(t_game *game);
 void			draw_ceiling(t_game *game);
-void			draw_player(t_game *game);
-int				draw_line(t_img *img, int begin_x, int begin_y, int end_x,
-					int end_y, int color);
-void			draw_rectangle(t_img *img, int begin_x, int begin_y, int end_x,
-					int end_y, int color);
-void			draw_filled_rectangle(t_img *img, int point1_x, int point1_y,
-					int point2_x, int point2_y, int color);
 // draw minimap
 void			draw_minimap(t_game *game);
 // listening events

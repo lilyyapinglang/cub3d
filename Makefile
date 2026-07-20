@@ -41,7 +41,8 @@ SRCS        = $(SRCS_DIR)/main.c \
 			  $(RENDER_DIR)/collision.c\
 			  $(RENDER_DIR)/raycasting_1.c \
 			  $(RENDER_DIR)/raycasting_2.c \
-			  $(RENDER_DIR)/texture.c 
+			  $(RENDER_DIR)/texture.c \
+			  $(RENDER_DIR)/floor_n_ceiling.c
 
 OBJS        = $(patsubst $(SRCS_DIR)/%.c,$(OBJS_DIR)/%.o,$(SRCS))
 
