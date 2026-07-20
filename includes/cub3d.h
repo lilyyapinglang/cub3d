@@ -48,6 +48,13 @@
 # define ERR_MAP_CHARS "Invalid character in map"
 # define ERR_MAP_PLAYER "Map must contain exactly one player"
 # define ERR_MAP_OPEN "Map is not enclosed by walls"
+# define ERR_MAP_TRAILING "Invalid content after map"
+# define ERR_TEX_DUPLICATE "Duplicate texture identifier"
+# define ERR_TEX_NOT_FOUND "Texture file not found"
+# define ERR_COLOR_MISSING "Missing color definition (F and C required)"
+# define ERR_COLOR_DUPLICATE "Duplicate color identifier"
+# define ERR_MAP_SHAPE "Invalid map format"
+# define ERR_UNKNOWN_KEY "Unknown identifier"
 
 typedef struct s_file
 {
@@ -137,6 +144,8 @@ typedef struct s_game
 	t_texture	tex[4];
 	int			floor;
 	int			ceiling;
+	bool		has_floor;
+	bool		has_ceiling;
 	t_img		img;
 	t_file		file;
 	t_key		keys;
@@ -145,6 +154,8 @@ typedef struct s_game
 
 void			init_all(t_game *game);
 void			init_mlx(t_game *game);
+void			init_load_texture_from_file(t_game *game);
+void			load_player(t_game *game);
 void			graceful_exit(t_game *game, int code);
 int				handle_exit(t_game *game);
 int				free_all(t_game *game);
@@ -161,6 +172,8 @@ int				check_borders(t_game *game);
 int				check_chars(t_game *game);
 int				check_player(t_game *game);
 int				validate_map(t_game *game);
+int				validate_config(t_game *game);
+int				check_trailing_lines(t_game *game);
 char			*get_next_line(int fd);
 
 // rendering

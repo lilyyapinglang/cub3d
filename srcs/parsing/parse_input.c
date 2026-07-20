@@ -20,11 +20,15 @@ static int	read_file(t_game *game)
 {
 	int		i;
 	char	*line;
+	int		len;
 
 	i = 0;
 	line = get_next_line(game->file.fd);
 	while (line)
 	{
+		len = ft_strlen(line);
+		if (len > 0 && line[len - 1] == '\n')
+			line[len - 1] = '\0';
 		game->file.file_content[i] = line;
 		i++;
 		line = get_next_line(game->file.fd);
@@ -40,29 +44,29 @@ static int	line_treatement(t_game *game, char *line)
 		return (parse_textures(game, line));
 	if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
 		return (parse_colors(game, line));
-	return (-1);
+	return (err_msg("", ERR_UNKNOWN_KEY, 1));
 }
 
 static int	dispatch_lines(t_game *game)
 {
 	int		i;
-	int		ret;
-	char	*line;
 
 	i = 0;
 	while (game->file.file_content[i])
 	{
-		line = game->file.file_content[i];
-		if (line[0] == '\n' || line[0] == '\0')
+		if (!game->file.file_content[i][0])
 		{
 			i++;
 			continue ;
 		}
-		ret = line_treatement(game, line);
-		if (ret == -1)
+		if (!ft_strchr("NSWEFC", game->file.file_content[i][0]))
+		{
+			if (!ft_strchr("01NSEW ", game->file.file_content[i][0]))
+				return (err_msg("", ERR_UNKNOWN_KEY, 1));
 			break ;
-		if (ret)
-			return (ret);
+		}
+		if (line_treatement(game, game->file.file_content[i]))
+			return (1);
 		i++;
 	}
 	game->file.end_map = i;
@@ -84,14 +88,13 @@ int	parse_file(t_game *game, char **argv)
 		return (err_msg("", ERR_MALLOC, 1));
 	game->file.fd = open(argv[1], O_RDONLY);
 	if (game->file.fd < 0)
-		return (err_msg(argv[1], ERR_FILE_OPEN, 1));
+		graceful_exit(game, 1);
 	read_file(game);
 	close(game->file.fd);
-	if (dispatch_lines(game))
-		return (1);
-	if (create_map(game))
-		return (1);
-	if (validate_map(game))
-		return (1);
+	get_next_line(-1);
+	if (dispatch_lines(game) || validate_config(game)
+		|| create_map(game) || check_trailing_lines(game)
+		|| validate_map(game))
+		graceful_exit(game, 1);
 	return (0);
 }

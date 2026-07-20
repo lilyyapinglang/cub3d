@@ -21,6 +21,8 @@ void	init_mlx(t_game *game)
 	if (!game->win)
 		graceful_exit(game, err_msg("mlx", ERR_MLX_WIN, 1));
 	game->img.img = mlx_new_image(game->mlx, WIN_W, WIN_H);
+	if (!game->img.img)
+		graceful_exit(game, err_msg("mlx", ERR_MLX_IMG, 1));
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel,
 			&game->img.line_length, &game->img.endian);
 }
