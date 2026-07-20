@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/20 18:30:06 by ylang             #+#    #+#             */
+/*   Updated: 2026/07/20 18:31:44 by ylang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -106,22 +118,22 @@ typedef struct s_texture
 
 typedef struct s_ray
 {
-	double		rayDirX;
-	double		rayDirY;
-	int			mapX;
-	int			mapY;
-	double		deltaDistX;
-	double		deltaDistY;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			map_x;
+	int			map_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
 	int			hit;
 	int			side;
-	int			stepX;
-	int			stepY;
-	double		sideDistX;
-	double		sideDistY;
-	double		perpWallDist;
-	double		lineHeight;
-	double		drawStart;
-	double		drawEnd;
+	int			step_x;
+	int			step_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		perp_wall_dist;
+	double		line_height;
+	double		draw_start;
+	double		draw_end;
 
 }				t_ray;
 

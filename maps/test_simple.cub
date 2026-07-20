@@ -4,7 +4,7 @@ C 100,10,200
 F 200,100,200
 
 
-WEHFJKDSJFJKGDF ./texture/west64.xpm
+WE ./texture/west64.xpm
 EA ./texture/east64.xpm
 
 NO ./texture/north64.xpm
@@ -21,5 +21,3 @@ SO ./texture/south64.xpm
 10N01
 10001
 11111
-
-sfdfsdfsaf
