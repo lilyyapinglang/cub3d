@@ -1,20 +1,12 @@
-F 220,100,0
-C 100,150,200
-
 NO ./texture/north64.xpm
 SO ./texture/south64.xpm
 WE ./texture/west64.xpm
 EA ./texture/east64.xpm
-
+F 220,100,0
+C 100,150,200
 
 11111
 10001
 10N01
 10001
 11111
-11111
-10001
-10001
-10001
-11111
-

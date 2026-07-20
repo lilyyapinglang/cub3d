@@ -52,6 +52,9 @@
 # define ERR_TEX_DUPLICATE "Duplicate texture identifier"
 # define ERR_TEX_NOT_FOUND "Texture file not found"
 # define ERR_COLOR_MISSING "Missing color definition (F and C required)"
+# define ERR_COLOR_DUPLICATE "Duplicate color identifier"
+# define ERR_MAP_SHAPE "Invalid map format"
+# define ERR_UNKNOWN_KEY "Unknown identifier"
 
 typedef struct s_file
 {
