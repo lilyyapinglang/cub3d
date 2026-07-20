@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/20 18:30:06 by ylang             #+#    #+#             */
+/*   Updated: 2026/07/20 19:58:28 by ylang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -48,6 +60,13 @@
 # define ERR_MAP_CHARS "Invalid character in map"
 # define ERR_MAP_PLAYER "Map must contain exactly one player"
 # define ERR_MAP_OPEN "Map is not enclosed by walls"
+# define ERR_MAP_TRAILING "Invalid content after map"
+# define ERR_TEX_DUPLICATE "Duplicate texture identifier"
+# define ERR_TEX_NOT_FOUND "Texture file not found"
+# define ERR_COLOR_MISSING "Missing color definition (F and C required)"
+# define ERR_COLOR_DUPLICATE "Duplicate color identifier"
+# define ERR_MAP_SHAPE "Invalid map format"
+# define ERR_UNKNOWN_KEY "Unknown identifier"
 
 typedef struct s_file
 {
@@ -76,8 +95,8 @@ typedef struct s_player
 
 typedef struct s_point
 {
-	int			x;
-	int			y;
+	double		x;
+	double		y;
 }				t_point;
 
 typedef struct s_img
@@ -99,22 +118,22 @@ typedef struct s_texture
 
 typedef struct s_ray
 {
-	double		rayDirX;
-	double		rayDirY;
-	int			mapX;
-	int			mapY;
-	double		deltaDistX;
-	double		deltaDistY;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			map_x;
+	int			map_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
 	int			hit;
 	int			side;
-	int			stepX;
-	int			stepY;
-	double		sideDistX;
-	double		sideDistY;
-	double		perpWallDist;
-	double		lineHeight;
-	double		drawStart;
-	double		drawEnd;
+	int			step_x;
+	int			step_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		perp_wall_dist;
+	double		line_height;
+	double		draw_start;
+	double		draw_end;
 
 }				t_ray;
 
@@ -137,6 +156,8 @@ typedef struct s_game
 	t_texture	tex[4];
 	int			floor;
 	int			ceiling;
+	bool		has_floor;
+	bool		has_ceiling;
 	t_img		img;
 	t_file		file;
 	t_key		keys;
@@ -145,6 +166,8 @@ typedef struct s_game
 
 void			init_all(t_game *game);
 void			init_mlx(t_game *game);
+void			init_load_texture_from_file(t_game *game);
+void			load_player(t_game *game);
 void			graceful_exit(t_game *game, int code);
 int				handle_exit(t_game *game);
 int				free_all(t_game *game);
@@ -161,19 +184,23 @@ int				check_borders(t_game *game);
 int				check_chars(t_game *game);
 int				check_player(t_game *game);
 int				validate_map(t_game *game);
+int				validate_config(t_game *game);
+int				check_trailing_lines(t_game *game);
 char			*get_next_line(int fd);
 
 // rendering
 void			put_pixel(t_img *img, int x, int y, int color);
+
+void			draw_player(t_game *game);
+int				draw_line(t_img *img, t_point begin, t_point end, int color);
+
+void			draw_rectangle(t_img *img, t_point point1, t_point point2,
+					int color);
+void			draw_filled_rectangle(t_img *img, t_point point1,
+					t_point point2, int color);
+
 void			draw_floor(t_game *game);
 void			draw_ceiling(t_game *game);
-void			draw_player(t_game *game);
-int				draw_line(t_img *img, int begin_x, int begin_y, int end_x,
-					int end_y, int color);
-void			draw_rectangle(t_img *img, int begin_x, int begin_y, int end_x,
-					int end_y, int color);
-void			draw_filled_rectangle(t_img *img, int point1_x, int point1_y,
-					int point2_x, int point2_y, int color);
 // draw minimap
 void			draw_minimap(t_game *game);
 // listening events

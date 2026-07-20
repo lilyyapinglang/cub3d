@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/20 16:23:28 by ylang             #+#    #+#             */
+/*   Updated: 2026/07/20 16:23:29 by ylang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 void	init_mlx(t_game *game)
@@ -21,6 +33,8 @@ void	init_mlx(t_game *game)
 	if (!game->win)
 		graceful_exit(game, err_msg("mlx", ERR_MLX_WIN, 1));
 	game->img.img = mlx_new_image(game->mlx, WIN_W, WIN_H);
+	if (!game->img.img)
+		graceful_exit(game, err_msg("mlx", ERR_MLX_IMG, 1));
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel,
 			&game->img.line_length, &game->img.endian);
 }

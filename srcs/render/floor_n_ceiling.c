@@ -1,46 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   floor_n_ceiling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/20 16:23:11 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/20 16:23:12 by ylang            ###   ########.fr       */
+/*   Created: 2026/07/20 19:54:35 by ylang             #+#    #+#             */
+/*   Updated: 2026/07/20 19:58:33 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	free_2d(void **arr)
+void	draw_ceiling(t_game *game)
 {
-	int	i;
+	int	x;
+	int	y;
 
-	if (!arr)
-		return ;
-	i = 0;
-	while (arr[i])
+	y = 0;
+	while (y < WIN_H / 2)
 	{
-		free(arr[i]);
-		i++;
+		x = 0;
+		while (x < WIN_W)
+		{
+			put_pixel(&game->img, x, y, game->ceiling);
+			x++;
+		}
+		y++;
 	}
-	free(arr);
 }
 
-int	free_all(t_game *game)
+void	draw_floor(t_game *game)
 {
-	int	i;
+	int	x;
+	int	y;
 
-	if (game->map.grid)
-		free_2d((void **)game->map.grid);
-	if (game->file.file_content)
-		free_2d((void **)game->file.file_content);
-	i = 0;
-	while (i < 4)
+	y = WIN_H / 2;
+	while (y < WIN_H)
 	{
-		if (game->tex[i].path)
-			free(game->tex[i].path);
-		i++;
+		x = 0;
+		while (x < WIN_W)
+		{
+			put_pixel(&game->img, x, y, game->floor);
+			x++;
+		}
+		y++;
 	}
-	return (0);
 }

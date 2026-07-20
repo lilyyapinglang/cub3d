@@ -6,7 +6,7 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:15:32 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/16 20:01:50 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/20 18:42:38 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,18 @@
 void	calculate_strip(t_game *game, int pitch)
 {
 	if (game->ray.side == 0)
-		game->ray.perpWallDist = (game->ray.sideDistX - game->ray.deltaDistX);
+		game->ray.perp_wall_dist = (game->ray.side_dist_x
+				- game->ray.delta_dist_x);
 	else
-		game->ray.perpWallDist = (game->ray.sideDistY - game->ray.deltaDistY);
-	game->ray.lineHeight = (int)(WIN_H / game->ray.perpWallDist);
-	game->ray.drawStart = -game->ray.lineHeight / 2 + WIN_H / 2 + pitch;
-	if (game->ray.drawStart < 0)
-		game->ray.drawStart = 0;
-	game->ray.drawEnd = game->ray.lineHeight / 2 + WIN_H / 2 + pitch;
-	if (game->ray.drawEnd >= WIN_H)
-		game->ray.drawEnd = WIN_H - 1;
+		game->ray.perp_wall_dist = (game->ray.side_dist_y
+				- game->ray.delta_dist_y);
+	game->ray.line_height = (int)(WIN_H / game->ray.perp_wall_dist);
+	game->ray.draw_start = -game->ray.line_height / 2 + WIN_H / 2 + pitch;
+	if (game->ray.draw_start < 0)
+		game->ray.draw_start = 0;
+	game->ray.draw_end = game->ray.line_height / 2 + WIN_H / 2 + pitch;
+	if (game->ray.draw_end >= WIN_H)
+		game->ray.draw_end = WIN_H - 1;
 }
 
 // where exactly the wall was hit
@@ -43,11 +45,11 @@ double	get_wall_hit_pos(t_game *game)
 	double	wall_x;
 
 	if (game->ray.side == 0)
-		wall_x = game->player.pos_y + game->ray.perpWallDist
-			* game->ray.rayDirY;
+		wall_x = game->player.pos_y + game->ray.perp_wall_dist
+			* game->ray.ray_dir_y;
 	else
-		wall_x = game->player.pos_x + game->ray.perpWallDist
-			* game->ray.rayDirX;
+		wall_x = game->player.pos_x + game->ray.perp_wall_dist
+			* game->ray.ray_dir_x;
 	wall_x -= floor((wall_x));
 	return (wall_x);
 }
@@ -62,22 +64,22 @@ void	draw_texture_by_pixel(t_game *game, int pitch, int texNum, int x)
 	unsigned int	color;
 
 	tex_x = (int)(get_wall_hit_pos(game) * (double)game->tex->width);
-	if (game->ray.side == 0 && game->ray.rayDirX > 0)
+	if (game->ray.side == 0 && game->ray.ray_dir_x > 0)
 		tex_x = game->tex->width - tex_x - 1;
-	if (game->ray.side == 1 && game->ray.rayDirY < 0)
+	if (game->ray.side == 1 && game->ray.ray_dir_y < 0)
 		tex_x = game->tex->width - tex_x - 1;
-	step = 1.0 * game->tex->height / game->ray.lineHeight;
-	tex_pos = (game->ray.drawStart - pitch - WIN_H / 2 + game->ray.lineHeight
+	step = 1.0 * game->tex->height / game->ray.line_height;
+	tex_pos = (game->ray.draw_start - pitch - WIN_H / 2 + game->ray.line_height
 			/ 2) * step;
-	while (game->ray.drawStart < game->ray.drawEnd)
+	while (game->ray.draw_start < game->ray.draw_end)
 	{
 		tex_y = (int)tex_pos & (game->tex->height - 1);
 		tex_pos += step;
 		color = *(int *)(game->tex[texNum].img.addr + tex_y
 				* game->tex[texNum].img.line_length + tex_x
 				* (game->tex[texNum].img.bits_per_pixel / 8));
-		put_pixel(&game->img, x, game->ray.drawStart, color);
-		game->ray.drawStart++;
+		put_pixel(&game->img, x, game->ray.draw_start, color);
+		game->ray.draw_start++;
 	}
 }
 
@@ -88,14 +90,14 @@ int	texture_calculations(t_game *game)
 
 	if (game->ray.side == 0)
 	{
-		if (game->ray.rayDirX > 0)
+		if (game->ray.ray_dir_x > 0)
 			tex_num = WEST_TEX;
 		else
 			tex_num = EAST_TEX;
 	}
 	else
 	{
-		if (game->ray.rayDirY > 0)
+		if (game->ray.ray_dir_y > 0)
 			tex_num = NORTH_TEX;
 		else
 			tex_num = SOUTH_TEX;

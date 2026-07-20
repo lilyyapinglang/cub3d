@@ -1,14 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   generate_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/20 16:23:49 by ylang             #+#    #+#             */
+/*   Updated: 2026/07/20 16:23:50 by ylang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 static int	count_map_lines(t_game *game)
 {
-	int	count;
-	int	start;
+	int		count;
+	int		start;
+	char	*line;
+	size_t	len;
 
 	start = game->file.end_map;
 	count = 0;
 	while (game->file.file_content[start + count])
+	{
+		line = game->file.file_content[start + count];
+		len = ft_strlen(line);
+		if (len > 0 && line[len - 1] == '\n')
+			len--;
+		if (len == 0)
+			break ;
 		count++;
+	}
 	return (count);
 }
 

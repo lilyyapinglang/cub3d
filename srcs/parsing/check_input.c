@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_input.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/20 16:23:59 by ylang             #+#    #+#             */
+/*   Updated: 2026/07/20 16:24:01 by ylang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 int	is_valid_file(char *arg, bool cub)
@@ -48,5 +60,25 @@ int	validate_map(t_game *game)
 		return (1);
 	if (check_borders(game))
 		return (1);
+	return (0);
+}
+
+int	check_trailing_lines(t_game *game)
+{
+	int		i;
+	char	*line;
+	size_t	len;
+
+	i = game->file.end_map + game->map.height;
+	while (game->file.file_content[i])
+	{
+		line = game->file.file_content[i];
+		len = ft_strlen(line);
+		if (len > 0 && line[len - 1] == '\n')
+			len--;
+		if (len > 0)
+			return (err_msg("", ERR_MAP_TRAILING, 1));
+		i++;
+	}
 	return (0);
 }
