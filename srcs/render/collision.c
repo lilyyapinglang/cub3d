@@ -6,7 +6,7 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:15:50 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/17 15:34:32 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/20 16:24:27 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 
 bool	can_player_move_to(t_game *game, double next_x, double next_y)
 {
-	// printf("next step player at %f %f \n", next_x, next_y);
-	// printf("int pos_x = %d int pos_y = %d\n", (int)next_x, (int)next_y);
-	// printf("grid is %c\n", game->map.grid[(int)next_y][(int)next_x]);
 	if (game->map.grid[(int)next_y][(int)next_x] == '1'
 		|| next_y >= (double)(game->map.height - 1) || next_y <= 0
 		|| next_x >= (double)(game->map.width - 1) - MOVE_SPEED
