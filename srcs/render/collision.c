@@ -12,9 +12,6 @@
 
 #include "../../includes/cub3d.h"
 
-// hit the wall -> stop  , not conituning
-// if not hit the all, update positions.
-
 bool	can_player_move_to(t_game *game, double next_x, double next_y)
 {
 	if (game->map.grid[(int)next_y][(int)next_x] == '1'
