@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:15:43 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/20 19:55:07 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/21 15:29:28 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
-
-void	put_pixel(t_img *img, int x, int y, int color)
-{
-	char	*pixel;
-
-	if (x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
-	{
-		pixel = img->addr + (y * img->line_length + x * (img->bits_per_pixel
-					/ 8));
-		*(unsigned int *)pixel = color;
-	}
-}
+#include "../includes/cub3d_bonus.h"
 
 int	draw_line(t_img *img, t_point begin, t_point end, int color)
 {

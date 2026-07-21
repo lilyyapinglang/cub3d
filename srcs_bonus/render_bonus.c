@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:15:29 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/21 15:34:49 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/21 15:29:46 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 /*
  for every frame
@@ -62,6 +62,7 @@ void	render_game(t_game *game)
 	draw_floor(game);
 	draw_ceiling(game);
 	raycasting(game);
+	draw_minimap(game);
 }
 
 /*
