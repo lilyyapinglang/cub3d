@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:30:06 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/21 15:03:20 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/21 15:36:14 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
@@ -191,9 +191,19 @@ char			*get_next_line(int fd);
 
 // rendering
 void			put_pixel(t_img *img, int x, int y, int color);
+
+void			draw_player(t_game *game);
+int				draw_line(t_img *img, t_point begin, t_point end, int color);
+
+void			draw_rectangle(t_img *img, t_point point1, t_point point2,
+					int color);
+void			draw_filled_rectangle(t_img *img, t_point point1,
+					t_point point2, int color);
+
 void			draw_floor(t_game *game);
 void			draw_ceiling(t_game *game);
-
+// draw minimap
+void			draw_minimap(t_game *game);
 // listening events
 int				on_key_press(int key, t_game *game);
 int				on_key_relase(int key, t_game *game);
@@ -222,4 +232,5 @@ void			load_all_textures(t_game *game);
 void			init_ray_params(int x, t_game *game);
 void			cal_step_n_sidedist(t_game *game);
 void			perform_dda(t_game *game);
+
 #endif

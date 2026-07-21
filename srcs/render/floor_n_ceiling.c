@@ -6,11 +6,23 @@
 /*   By: ylang <ylang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 19:54:35 by ylang             #+#    #+#             */
-/*   Updated: 2026/07/20 19:58:33 by ylang            ###   ########.fr       */
+/*   Updated: 2026/07/21 15:34:54 by ylang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	put_pixel(t_img *img, int x, int y, int color)
+{
+	char	*pixel;
+
+	if (x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
+	{
+		pixel = img->addr + (y * img->line_length + x * (img->bits_per_pixel
+					/ 8));
+		*(unsigned int *)pixel = color;
+	}
+}
 
 void	draw_ceiling(t_game *game)
 {
