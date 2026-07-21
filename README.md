@@ -72,7 +72,32 @@ Both modules communicate through a shared `t_game` structure, which stores all p
 
 ## Parsing 
 
-leave to tony.....
+### 1. File validation
+
+The `.cub` file is first checked for the correct extension. It is then read entirely into memory line by line using `get_next_line`.
+
+### 2. Identifier dispatch
+
+Each line is inspected: if it starts with one of the six known identifiers (`NO`, `SO`, `WE`, `EA`, `F`, `C`), it is dispatched to the corresponding parser.
+
+### 3. Texture & color parsing
+
+Texture lines store the `.xpm` path for each wall face (North, South, East, West). The path is validated for the correct extension and the file is opened to confirm it exists. Duplicate identifiers are rejected.
+
+Color lines (`F` for floor, `C` for ceiling) are split on commas, and each component is validated as an integer in the `0–255` range. The three values are packed into a single `int` using bit shifting (`R << 16 | G << 8 | B`). Duplicate color definitions are also rejected.
+
+### 4. Map generation
+
+The map section is extracted from the file content and padded to a uniform width so that every row has the same length, producing a rectangular 2D grid.
+
+### 5. Map validation
+
+The grid is validated in multiple passes:
+- **Size check** — the map must be at least 3×3.
+- **Character check** — only `0`, `1`, `N`, `S`, `E`, `W` and spaces are allowed.
+- **Player check** — exactly one player position must exist; its coordinates are stored for the renderer.
+- **Border check** — every walkable cell (`0`, `N`, `S`, `E`, `W`) must be enclosed by walls on all four sides (no adjacency to spaces or map edges).
+- **Trailing lines** — any non-empty content after the map is rejected.
 
 ## Rendering 
 
