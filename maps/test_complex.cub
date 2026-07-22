@@ -1,13 +1,10 @@
+NO ./texture/north64.xpm
+SO ./texture/south64.xpm
+WE ./texture/west64.xpm
+EA ./texture/east64.xpm
 
 F 220,10,100
 C 225,30,100
-
-NO ./texture/south64.xpm
-SO ./texture/south64.xpm
-WE ./texture/south64.xpm
-
-EA ./texture/east64.xpm
-
 
         1111111111111111111111111
         1000000000110000000000001
